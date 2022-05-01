@@ -11,18 +11,33 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    /* public function __construct()
     {
         $this->middleware('auth');
+    } */
+
+    function IndexAction()
+    {
+        return view("index");
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+    function LoginAction()
     {
-        return view('home');
+        return view("auth/login");
+    }
+
+    function RegisterAction()
+    {
+        return view("auth/register");
+    }
+
+    function CreateOrderAction()
+    {
+        return view("create-order");
+    }
+
+    function OrderListAction()
+    {
+        return view("order-list");
     }
 }
