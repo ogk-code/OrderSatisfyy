@@ -15,11 +15,15 @@
       <br>
       <div class="form-group">
         <input type="text" name="name" placeholder="Введите email" class="form-control" value="" autocomplete="off">
-        <span class="invalid-feedback"></span>
+          @error('email')
+            <span class="invalid-feedback" role="alert"><strong>Неправильный email</strong></span>
+          @enderror
       </div>
       <div class="form-group">
-        <input type="password" name="password" placeholder="Введите пароль" class="form-control " value="" autocomplete="off">
-        <span class="invalid-feedback"></span>
+        <input type="password" name="password" placeholder="Введите пароль" class="form-control" value="" autocomplete="off">
+          @error('password')
+            <span class="invalid-feedback" role="alert"><strong>>Неправильный пароль</strong></span>
+          @enderror
       </div>
 
       <br>
@@ -28,7 +32,7 @@
       </div>
       <p>У вас нет аккаунта? <a href="{{env("APP_URL")}}/register">Зарегистрировуйтесь</a></p>
       <br><br><br><br><br><br>
-      <p> <a href="">Вернуться назад</a></p>
+      <p> <a href="{{env("APP_URL")}}">Вернуться назад</a></p>
       <p class="mt-2 mb-1 text-muted">© 2021-2022</p>
     </form>
 

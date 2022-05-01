@@ -214,7 +214,7 @@
             </form>
             <li><a href="{{env("APP_URL")}}/login"><u>Войти</u></a></li>
 
-          <li><a class="nothing" href="{{env("APP_URL")}}/register">Стать специалистом</a></li>
+          <li><a class="nothing" href="{{env("APP_URL")}}/register">Регистрация</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

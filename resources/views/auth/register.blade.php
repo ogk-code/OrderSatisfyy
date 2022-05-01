@@ -26,13 +26,26 @@
         <span class="invalid-feedback"></span>
       </div>
 
+        <div style="text-align: left;" class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+            <label class="form-check-label" for="flexRadioDefault1">
+                Заказчик
+            </label>
+        </div>
+        <div style="text-align: left;" class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+            <label class="form-check-label" for="flexRadioDefault2">
+                Исполнитель
+            </label>
+        </div>
+
       <br>
       <div class="form-group">
           <input type="submit" class="btn btn-primary" value="Зарегистрироваться">
       </div>
       <div class="form-group">У вас уже есть аккаунт? <a href="{{env("APP_URL")}}/login">Авторизируйтесь</a></div>
       <br><br><br><br><br><br>
-      <p> <a href="">Вернуться назад</a></p>
+      <p> <a href="{{env("APP_URL")}}">Вернуться назад</a></p>
       <p class="mt-2 mb-1 text-muted">© 2021-2022</p>
     </form>
 
