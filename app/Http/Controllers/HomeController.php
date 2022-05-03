@@ -40,4 +40,9 @@ class HomeController extends Controller
     {
         return view("order-list");
     }
+
+    function UserProfileAction()
+    {
+        return view("user-profile");
+    }
 }

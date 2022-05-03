@@ -21,3 +21,4 @@ Route::get('/login', [\App\Http\Controllers\HomeController::class, 'LoginAction'
 Route::get('/register', [\App\Http\Controllers\HomeController::class, 'RegisterAction']);
 Route::get('/create-order', [\App\Http\Controllers\HomeController::class, 'CreateOrderAction']);
 Route::get('/order-list', [\App\Http\Controllers\HomeController::class, 'OrderListAction']);
+Route::get('/user-profile', [\App\Http\Controllers\HomeController::class, 'UserProfileAction']);
