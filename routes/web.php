@@ -26,3 +26,6 @@ Route::get('/user-profile', [\App\Http\Controllers\HomeController::class, 'UserP
 Route::get('/FAQ', function () {
     return view('FAQ');
 });
+Route::get('/contacts', function () {
+    return view('contacts');
+});

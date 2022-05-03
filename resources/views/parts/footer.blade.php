@@ -28,8 +28,7 @@
               <li><i class="bx bx-chevron-right"></i> <a href="{{env("APP_URL")}}">Главная</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="">О нас</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="{{env("APP_URL")}}/FAQ">Популярные вопросы</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="">Новостная лента</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="">Связаться с нами</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{env("APP_URL")}}/contacts">Связаться с нами</a></li>
             </ul>
           </div>
 
