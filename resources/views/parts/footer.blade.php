@@ -3,7 +3,7 @@
       <div class="container">
         <div class="row">
 
-          <div class="col-lg-3 col-md-6">
+          <div class="col-lg-4 col-md-6">
             <div class="footer-info">
               <h3>Order/Satisfy</h3>
               <p>
@@ -22,25 +22,14 @@
             </div>
           </div>
 
-          <div class="col-lg-2 col-md-6 footer-links">
+          <div class="col-lg-4 col-md-6 footer-links">
             <h4>Полезные ссылки</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="">Главная</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{env("APP_URL")}}">Главная</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="">О нас</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="">Популярные Вопросы</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{env("APP_URL")}}/FAQ">Популярные вопросы</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="">Новостная лента</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="">Связаться с нами</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Как всё работает</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Some page</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Some page</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Some page</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Some page</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Some page</a></li>
             </ul>
           </div>
 
@@ -50,9 +39,7 @@
             <form action="" method="post">
               <input type="email" name="email" class="rasilka" autocomplete="off"><input type="submit" value="Подписаться">
             </form>
-
           </div>
-
         </div>
       </div>
     </div>
