@@ -22,3 +22,7 @@ Route::get('/register', [\App\Http\Controllers\HomeController::class, 'RegisterA
 Route::get('/create-order', [\App\Http\Controllers\HomeController::class, 'CreateOrderAction']);
 Route::get('/order-list', [\App\Http\Controllers\HomeController::class, 'OrderListAction']);
 Route::get('/user-profile', [\App\Http\Controllers\HomeController::class, 'UserProfileAction']);
+
+Route::get('/FAQ', function () {
+    return view('FAQ');
+});
