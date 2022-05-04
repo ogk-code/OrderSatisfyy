@@ -1,73 +1,39 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{env("APP_URL")}}/assets/img/favicon.png">
+    <title>Авторизация специалиста</title>
+    <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/bootstrap.min.css">
+    <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/login.css">
+</head>
+<body class="text-center footer-back-log">
+    <form action="{{ route('login') }}" class="form-signin" method="post">
+        @csrf
+      <img class="mb-4" src="https://img.icons8.com/plasticine/100/000000/barcode.png" alt="" width="100" height="100">
+      <h1 class="h3 mb-3 font-weight-normal">Авторизация</h1>
+      <br>
+      <div class="form-group">
+        <input type="text"  placeholder="Введите email" class="form-control"  name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+        <span class="invalid-feedback"></span>
+      </div>
+      <div class="form-group">
+        <input type="password" name="password" placeholder="Введите пароль" class="form-control " required autocomplete="current-password">
+        <span class="invalid-feedback"></span>
+      </div>
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+      <br>
+      <div class="form-group">
+          <input type="submit" class="btn btn-primary" value="Авторизоваться" autocomplete="off">
+      </div>
+      <p>У вас нет аккаунта? <a href="{{env("APP_URL")}}/register">Зарегистрировуйтесь</a></p>
+      <br><br><br><br><br><br>
+      <p> <a href="">Вернуться назад</a></p>
+      <p class="mt-2 mb-1 text-muted">© 2021-2022</p>
+    </form>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+<div class="mallbery-caa" style="z-index: 2147483647 !important; text-transform: none !important; position: fixed;"></div>
+</body>
+</html>
