@@ -212,9 +212,16 @@
             <li><input class="form-control redborder" type="search" name="search_q" placeholder="Кого нужно найти?" aria-label="Search" autocomplete="off">
               <li><input class="btn btn-outline mr-sm-2 my-2 my-sm-0" style="border-color: red; border-width: 2px; margin-right: 20px;" type="submit" value="Искать"></li>
             </form>
-            <li><a href="{{env("APP_URL")}}/login"><u>Войти</u></a></li>
-
+            <?php
+            use Illuminate\Support\Facades\Auth;
+            ?>
+            @if(!Auth::user())
+            <li><a href="{{env("APP_URL")}}/login2"><u>Войти</u></a></li>
           <li><a class="nothing" href="{{env("APP_URL")}}/register">Стать специалистом</a></li>
+            @else
+                <li><a href="{{env("APP_URL")}}/logout"><u>{{Auth::user()->name}}</u></a></li>
+                <li><a class="nothing" href="{{env("APP_URL")}}/">Профиль</a></li>
+            @endif
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

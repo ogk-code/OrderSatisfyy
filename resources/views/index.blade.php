@@ -31,7 +31,12 @@
             <div class="container">
               <h2 class="">Онлайн-сервис заказа услуг в городе Одесса <span></span></h2>
               <p class="">Сервис поиска частных специалистов для решения любых задач.</p>
-              <a href="" class="btn-get-started scrollto">Создать заказ</a>
+                @role('client')
+              <a href="/create-order" class="btn-get-started scrollto">Создать заказ</a>
+                @endrole
+                @role('staff')
+                <a href="/order-list" class="btn-get-started scrollto">Просмотреть заказы</a>
+                @endrole
             </div>
           </div>
         </div>

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Orders;
+use App\Models\User;
+//use http\Client\Curl\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrdersController extends Controller
 {
@@ -31,11 +34,33 @@ class OrdersController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
-        //
+        $user = User::find( Auth::user()->id);
+
+        // Если у пользователя нет прав на создания заказа редеректим на индекс
+        if(!$user->hasRole("client")){
+            return redirect("/");
+        }
+
+//        dd($request->nazva);
+
+        $order = new Orders();
+
+
+        $order->name = $request->title;
+        $order->sub_category_id = 1;
+        $order->description = $request->description;
+        $order->adrss = $request->adrss;
+        $order->budget = $request->price;
+        $order->time = $request->date." ".$request->time.":00";
+        $order->user_id = $user->id;
+        $order->save();
+        return redirect("/order-list");
+
     }
 
     /**
