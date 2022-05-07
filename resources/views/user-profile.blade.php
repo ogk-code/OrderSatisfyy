@@ -20,7 +20,7 @@
 <br><br><br><br>
 <div class="container hue">
     <h3>Профиль пользователя</h3>
-    <div style="border: 1px solid rgba(0,0,0,.125); border-radius: 0.25rem;" class="container">
+    <div style="border: 1px solid red; border-radius: 0.25rem;" class="container">
         <table class="table">
             <div style="margin: 15px"></div>
             <tr>
