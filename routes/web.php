@@ -23,4 +23,15 @@ Route::get('/register', [\App\Http\Controllers\HomeController::class, 'RegisterA
 Route::get('/create-order', [\App\Http\Controllers\HomeController::class, 'CreateOrderAction']);
 Route::get('/order-list', [\App\Http\Controllers\HomeController::class, 'OrderListAction']);
 
+Route::get('/FAQ', function () {
+    return view('FAQ');
+});
+Route::get('/contacts', function () {
+    return view('contacts');
+});
+Route::get('/about-us', function () {
+    return view('about-us');
+});
+
 Route::resource('order', \App\Http\Controllers\OrdersController::class);
+
