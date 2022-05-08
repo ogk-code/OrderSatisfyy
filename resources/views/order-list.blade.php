@@ -54,14 +54,15 @@
             </div>
 
             <!--End of post 1 -->
+            @foreach($orders as $order)
             <div
                 class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0">
                 <div class="row align-items-center">
                     <div class="col-md-7 mb-3 mb-sm-0">
                         <h5>
-                            <a href="#" class="text-primary">помой меня</a>
+                            <a href="{{env("APP_URL")."/orders/".$order->id}}" class="text-primary">{{$order->name}}</a>
                         </h5>
-                        <p class="text-sm">помой меня пж<span class="op-6"></span></p>
+                        <p class="text-sm">{{$order->description}}<span class="op-6"></span></p>
                         <div class="text-sm op-5"><a class="text-black mr-2" href="#">#Темы заказов для обсуждения</a>
                             <a href="">Удалить</a>
                         </div>
@@ -72,7 +73,7 @@
                         <div class="row text-center op-7">
                             <div class="col px-2"><span class="d-block text-sm">status</span></div>
                             <div class="col px-2"><i class="ion-ios-person-outline icon-1x"></i> <span
-                                    class="d-block text-sm">юра</span></div>
+                                    class="d-block text-sm">{{$order->user}}</span></div>
                             <div class="col px-2"><i class="ion-ios-chatboxes-outline icon-1x"></i> <span
                                     class="d-block text-sm">Ответы</span></div>
                             <div class="col px-2"><i class="ion-ios-compose-outline icon-1x"></i> <span
@@ -80,8 +81,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
+
+
             <hr style="color:red">
+
+            </div>
+        @endforeach
             <!-- /End of post 1 -->
 
         </div>

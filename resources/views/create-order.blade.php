@@ -29,7 +29,8 @@
     <div class="row">
         <div class="col align-self-center">
             <h4 class="mb-3">Добавление заказа</h4>
-            <form action="" method="post">    <hr class="order mb-4">
+            <form action="{{route("order.store")}}" method="post">    <hr class="order mb-4">
+                @csrf
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label>Категория заказа</label>
@@ -100,7 +101,7 @@
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         <label for="zip">Адресс</label>
-                        <input name="address" type="text" class="form-control" id="zip" placeholder=" ул.Багрицкого 12Б" autocomplete="off" required>
+                        <input name="adrss" type="text" class="form-control" id="zip" placeholder=" ул.Багрицкого 12Б" autocomplete="off" required>
                         <div class="invalid-feedback">
                             Zip code required.
                         </div>

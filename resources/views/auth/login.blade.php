@@ -9,21 +9,18 @@
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/login.css">
 </head>
 <body class="text-center footer-back-log">
-    <form action="" class="form-signin" method="post">
+    <form action="{{ route('login') }}" class="form-signin" method="post">
+        @csrf
       <img class="mb-4" src="https://img.icons8.com/plasticine/100/000000/barcode.png" alt="" width="100" height="100">
       <h1 class="h3 mb-3 font-weight-normal">Авторизация</h1>
       <br>
       <div class="form-group">
-        <input type="text" name="name" placeholder="Введите email" class="form-control" value="" autocomplete="off">
-          @error('email')
-            <span class="invalid-feedback" role="alert"><strong>Неправильный email</strong></span>
-          @enderror
+        <input type="text"  placeholder="Введите email" class="form-control"  name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+        <span class="invalid-feedback"></span>
       </div>
       <div class="form-group">
-        <input type="password" name="password" placeholder="Введите пароль" class="form-control" value="" autocomplete="off">
-          @error('password')
-            <span class="invalid-feedback" role="alert"><strong>>Неправильный пароль</strong></span>
-          @enderror
+        <input type="password" name="password" placeholder="Введите пароль" class="form-control " required autocomplete="current-password">
+        <span class="invalid-feedback"></span>
       </div>
 
       <br>
