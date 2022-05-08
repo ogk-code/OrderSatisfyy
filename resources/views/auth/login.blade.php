@@ -29,7 +29,7 @@
       </div>
       <p>У вас нет аккаунта? <a href="{{env("APP_URL")}}/register">Зарегистрировуйтесь</a></p>
       <br><br><br><br><br><br>
-      <p> <a href="">Вернуться назад</a></p>
+      <p> <a href="{{env("APP_URL")}}">Вернуться назад</a></p>
       <p class="mt-2 mb-1 text-muted">© 2021-2022</p>
     </form>
 

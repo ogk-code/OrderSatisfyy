@@ -61,4 +61,14 @@ class HomeController extends Controller
 
         return redirect('/');
     }
+
+    function UserProfileAction()
+    {
+        return view("user-profile");
+    }
+
+    function OrderAction()
+    {
+        return view("order");
+    }
 }
