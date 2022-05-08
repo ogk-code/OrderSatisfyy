@@ -22,7 +22,7 @@
     <div class="text-center">
         <img class="d-block mx-auto mb-4" src="{{env("APP_URL")}}/assets/img/9551554301579156626-128.png" alt="" width="100" height="100">
         <h2>Название</h2>
-        <h6>Создал пользователь Юра</h6>
+        <h6>Создал пользователь <a href="{{env("APP_URL")."/users/".$user["id"]}}"> {{$user["name"]}}</a></h6>
     </div>
     <div class="row">
         <div class="col align-self-center">
@@ -30,18 +30,19 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label>Категория заказа</label>
-                        <div><b>Категория</b></div>
+                        <div><b onclick="location.href='{{env("APP_URL")."/category/".$cats["category"]["id"]}}'">{{$cats["category"]["name"]}}</b></div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Подкатегория заказа</label>
-                        <div><b>Подкатегория</b></div>
+                        <div><b onclick="location.href='{{env("APP_URL")."/sub_category/".$cats["sub_category"]["id"]}}'">{{$cats["sub_category"]["name"]}}</b></div>
+
                     </div>
                 </div>
 
                 <div class="mb-3">
                     <label>Детальное описание заказа</label>
                     <div class="md-form mb-4 pink-textarea active-red-textarea">
-                        hue
+                        {{$order["description"]}}
                     </div>
                 </div>
 
@@ -49,24 +50,26 @@
                     <div class="col-md-4 mb-3">
                         <label>Адресс</label>
                         <div>
-                            hue
+                            {{$order["adrss"]}}
+
                         </div>
                     </div>
                     <div class="form-group col-md-4 mb-3">
-                        <label>Конечный день выполнения</label>
+                        <label>Обьявление создано</label>
                         <div>
-                            hue
+                            {{ date('Y-m-d H:i:s', strtotime($order["created_at"]))}}
+
                         </div>
                     </div>
                     <div class="form-group col-md-4 mb-3">
                         <label>Конечное время выполнения</label>
                         <div>
-                            hue
+                            {{$order["time"]}}
                         </div>
                     </div>
                 </div>
                 <div>
-                    <h4 style="margin: 0">Бюджет: 157 грн.</h4>
+                    <h4 style="margin: 0">Бюджет: {{$order["budget"]}} грн.</h4>
                 </div>
             </form>
         </div>
