@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div>
-                    <h4 style="margin: 0">Бюджет: {{$order["budget"]}} грн.</h4>
+                    <h4 style='margin: 0;font-family: "Open Sans", sans-serif;'>Бюджет: {{$order["budget"]}} грн.</h4>
                 </div>
             </form>
         </div>
