@@ -26,6 +26,14 @@
         <h2>Форма создания заказа</h2>
     </div>
 
+    <script>
+        let obj = '<?php echo json_encode($c); ?>';
+        let json  = JSON.parse(obj);
+
+     // let arr = JSON.parse("");
+     // console.log(arr);
+     </script>
+
     <div class="row">
         <div class="col align-self-center">
             <h4 class="mb-3">Добавление заказа</h4>
@@ -45,7 +53,7 @@
                             <option value="Курьерскиеуслуги">Курьерские услуги</option>
                             <option value="Логистическиеискладскиеуслуги">Логистические и складские услуги</option>
                             <option value="Мебельныеработы">Мебельные работы</option>
-                            <option value="Организацияпраздников">Организация праздников</option>
+                            <option value="cat_id(1)">Организация праздников</option>
                             <option value="Отделочныеработы">Отделочные работы</option>
                             <option value="Работавинтернете">Работа в интернете</option>
                             <option value="Разработкасайтов">Разработка сайтов</option>
@@ -66,7 +74,7 @@
                     <div class="col-md-6 mb-3">
                         <label>Подкатегория заказа</label>
                         <select name="subcategory" class="form-control" id="subcategory" required>
-                            <option value="nonen" selected>Выбрать подкатегорию...</option>
+                            <option data-id="cat_id(1)" value="nonen" selected>Выбрать подкатегорию...</option>
                             <option value="Бытовыеуслуги">Бытовые услуги</option>
                         </select>
                         <div class="invalid-feedback">
