@@ -37,5 +37,5 @@ Route::get('/my-orders', function () {
     return view('my-orders');
 });
 
-Route::resource('orders', \App\Http\Controllers\OrdersController::class);
+Route::resource('order', \App\Http\Controllers\OrdersController::class);
 
