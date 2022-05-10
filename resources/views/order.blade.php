@@ -21,7 +21,7 @@
 <div class="container">
     <div class="text-center">
         <img class="d-block mx-auto mb-4" src="{{env("APP_URL")}}/assets/img/9551554301579156626-128.png" alt="" width="100" height="100">
-        <h2>Название</h2>
+        <h2>{{$order["name"]}}</h2>
         <h6>Создал пользователь <a href="{{env("APP_URL")."/users/".$user["id"]}}"> {{$user["name"]}}</a></h6>
     </div>
     <div class="row">
@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div>
-                    <h4 style="margin: 0">Бюджет: {{$order["budget"]}} грн.</h4>
+                    <h4 style='margin: 0;font-family: "Open Sans", sans-serif;'>Бюджет: {{$order["budget"]}} грн.</h4>
                 </div>
             </form>
         </div>

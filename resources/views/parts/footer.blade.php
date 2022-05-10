@@ -6,11 +6,11 @@
           <div class="col-lg-4 col-md-6">
             <div class="footer-info">
               <h3>Order/Satisfy</h3>
-              <p>
+              <p style='font-family: "Open Sans", sans-serif;'>
                 ул. Барицкого, 12Б <br>
                 Одесса 65005, Украина<br><br>
-                <strong>Телефон:</strong>+380 99 696 69 69<br>
-                <strong>Почта:</strong> OrderSatisfy@gmail.com<br>
+                <strong>Телефон: </strong>+380 99 696 69 69<br>
+                <strong>Почта: </strong>OrderSatisfy@gmail.com<br>
               </p>
               <div class="social-links mt-3">
                 <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
