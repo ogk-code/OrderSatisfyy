@@ -32,9 +32,11 @@ Route::get('/contacts', function () {
 Route::get('/about-us', function () {
     return view('about-us');
 });
-
 Route::get('/my-orders', function () {
     return view('my-orders');
+});
+Route::get('/edit-order', function () {
+    return view('edit-order');
 });
 
 Route::resource('/order', \App\Http\Controllers\OrdersController::class);
