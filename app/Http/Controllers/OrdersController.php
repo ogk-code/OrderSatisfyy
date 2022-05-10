@@ -75,19 +75,49 @@ class OrdersController extends Controller
         if (!$order) {
             abort(404);
         }
-        $order = $order->toArray();
-        $user = User::find($order["user_id"])->toArray();
-        $user = [
-            "name"=>$user["name"],
-            "id" => $user["id"],
+        $order       = $order->toArray();
+        $user        = User::find($order["user_id"])->toArray();
+        $user        = [
+            "name" => $user["name"],
+            "id"   => $user["id"],
         ];
         $subCategory = SubСategories::find($order["sub_category_id"])->toArray();
-        $cats = [
+        $cats        = [
             "sub_category" => $subCategory,
-            "category" => Сategories::find($subCategory["category_id"])->toArray(),
+            "category"     => Сategories::find($subCategory["category_id"])->toArray(),
         ];
 
-        return view("order", ["order" => $order, "user"=>$user, "cats"=>$cats]);
+//        $c = [
+//            0 => [
+//                "name"    => "test1",
+//                "id"      => 1,
+//                "subcats" => [
+//                    0 => [
+//                        "name" => "sun_cat1",
+//                        "id"   => 1,
+//                    ],
+//                    1 => [
+//                        "name" => "sun_cat2",
+//                        "id"   => 2,
+//                    ],
+//                ],
+//
+//            ],
+//
+//            1 => [
+//                "name"    => "test2",
+//                "id"      => 2,
+//                "subcats" => [
+//                    0 => [
+//                        "name" => "sun_cat3",
+//                        "id"   => 3,
+//                    ],
+//                ],
+//            ],
+//        ];
+
+
+        return view("order", ["order" => $order, "user" => $user, "cats" => $cats]);
     }
 
     /**
