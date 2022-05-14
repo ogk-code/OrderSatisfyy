@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/remixicon.css">
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/swiper-bundle.min.css">
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/index.css">
+    <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/header.css">
 </head>
 <body>
 @include("parts.header")
@@ -31,12 +32,7 @@
             <div class="container">
               <h2 class="">Онлайн-сервис заказа услуг в городе Одесса <span></span></h2>
               <p class="">Сервис поиска частных специалистов для решения любых задач.</p>
-                @role('client')
-              <a href="/create-order" class="btn-get-started scrollto">Создать заказ</a>
-                @endrole
-                @role('staff')
-                <a href="/order-list" class="btn-get-started scrollto">Просмотреть заказы</a>
-                @endrole
+                <a href="{{env("APP_URL")}}/about-us" class="btn-get-started scrollto">Узнать больше</a>
             </div>
           </div>
         </div>
@@ -47,7 +43,7 @@
             <div class="container">
               <h2 class="">Категории работ</h2>
               <p class="">Проверенные специалисты для выполнения ваших бытовых или бизнес задач.</p>
-              <a href="#hero-carousel-indicators" class="btn-get-started scrollto">Узнать больше</a>
+              <a href="{{env("APP_URL")}}/about-us" class="btn-get-started scrollto">Узнать больше</a>
             </div>
           </div>
         </div>
@@ -58,7 +54,7 @@
             <div class="container">
               <h2 class="">Как работает Order/Satisfy</h2>
               <p class=""></p>
-              <a href="#howitworks" class="btn-get-started scrollto">Узнать больше</a>
+              <a href="{{env("APP_URL")}}/about-us" class="btn-get-started scrollto">Узнать больше</a>
             </div>
           </div>
         </div>

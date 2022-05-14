@@ -14,10 +14,10 @@
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/remixicon.css">
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/swiper-bundle.min.css">
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/index.css">
+    <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/header.css">
 </head>
 <body>
 @include("parts.header")
-<br><br><br><br>
 <div class="container hue">
     <h3>Профиль пользователя</h3>
     <div style="border: 1px solid red; border-radius: 0.25rem;" class="container">

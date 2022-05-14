@@ -14,17 +14,16 @@
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/remixicon.css">
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/swiper-bundle.min.css">
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/style.css">
+    <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/header.css">
 </head>
 <body>
 @include("parts.header")
 <main id="main">
-    <section id="breadcrumbs" class="breadcrumbs">
+    <section id="breadcrumbs" class="breadcrumbs" style="margin-top: 0">
         <div class="container">
-
             <div class="d-flex justify-content-between align-items-center">
                 <h2>Связаться с нами</h2>
             </div>
-
         </div>
     </section>
 

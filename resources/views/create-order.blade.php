@@ -18,10 +18,10 @@
     <link href="{{env("APP_URL")}}/assets/style/swiper-bundle.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/createOrder.css">
+    <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/header.css">
 </head>
 <body>
 @include("parts.header")
-<br><br><br>
 <div class="container">
     <div class="py-4 text-center">
         <img class="d-block mx-auto mb-4" src="{{env("APP_URL")}}/assets/img/9551554301579156626-128.png" alt=""
