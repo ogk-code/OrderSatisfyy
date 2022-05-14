@@ -6,6 +6,9 @@
         <a href="{{env("APP_URL")}}/create-order">
             <button type="button" class="btn btn-warning item">Создать заказ</button>
         </a>
+        <a href="{{env("APP_URL")}}/my-orders">
+            <button type="button" class="btn btn-danger item">Мои заказы</button>
+        </a>
         @endrole
 
         @role('staff')
