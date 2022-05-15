@@ -15,10 +15,14 @@
         <a href="{{env("APP_URL")}}/order-list">
             <button type="button" class="btn btn-warning item">Все заказы</button>
         </a>
-        <input type="text" class="form-control item" placeholder="Поиск заказов" aria-label="Поиск заказов"
-               aria-describedby="basic-addon2">
-        <div class="input-group-append">
-            <button class="btn btn btn-outline-danger" type="button">Найти</button>
+        <div class="item" style="width: 200px">
+            <select class="js-selectize" name="order" placeholder="Поиск заказов">
+                <option value=""></option>
+                <option value="1">Сантехник</option>
+                <option value="2">Электрик</option>
+                <option value="3">Столяр</option>
+                <option value="4">Слесарь</option>
+            </select>
         </div>
         @endrole
     </div>
