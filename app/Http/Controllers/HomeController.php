@@ -40,6 +40,9 @@ class HomeController extends Controller
 
     function CreateOrderAction()
     {
+        if (!Auth::check()) {
+            redirect("/");
+        }
         $categories    = $this->getTableToArray("сategories", ["id", "name"]);
         $subCategories = $this->getTableToArray("subсategories", ["id", "name", "category_id"]);
 
@@ -50,14 +53,7 @@ class HomeController extends Controller
 
     function OrderListAction()
     {
-        $orders = DB::table("orders")->get()->toArray();
-
-
-        foreach ($orders as $order) {
-            // todo так делать нельзя !  Ставить запрос цикл это пздц, потом исправлю.
-            $order->user = DB::table("users")->select("id", "name")->where("id", $order->user_id)->first()->name;
-        }
-
+        $orders = $this->getOrders();
         return view("order-list", ["orders" => $orders]);
     }
 
@@ -121,10 +117,44 @@ class HomeController extends Controller
             $subCategoriesArray[$subCategory->category_id][] = ["id" => $subCategory->id, "name" => $subCategory->name];
         }
 
-        foreach ($categories as $key => $category){
-            $categories[$key]["subcats"] = $subCategoriesArray[$category["id"]]??[];        }
+        foreach ($categories as $key => $category) {
+            $categories[$key]["subcats"] = $subCategoriesArray[$category["id"]] ?? [];
+        }
 
         return $categories;
+    }
+
+    function MyOrdersAction()
+    {
+        $user = User::find(Auth::user()->id);
+        if (!$user) {
+            redirect("/");
+        }
+        $orders = $this->getOrders($user);
+
+        return view("order-list", ["orders" => $orders]);
+    }
+
+
+    private function getOrders($user = null)
+    {
+        $orders = DB::table("orders");
+
+
+        if ($user) {
+            $orders = $orders->where("user_id", '=', $user);
+            $name = DB::table("users")->select("name")->where("id", $user->id)->first()->name;
+        }
+
+        $orders = $orders->get()->toArray();
+
+
+        foreach ($orders as $order) {
+            // todo так делать нельзя !  Ставить запрос цикл это пздц, потом исправлю.
+            $order->user = $user?$name:DB::table("users")->select("name")->where("id", $order->user_id)->first()->name;
+        }
+
+        return $orders;
     }
 
 }
