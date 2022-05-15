@@ -15,14 +15,20 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        $orderServices = new Permission();
-        $orderServices->name = 'Order services';
-        $orderServices->slug = 'order-services';
-        $orderServices->save();
-
-        $createOrder = new Permission();
-        $createOrder->name = 'Create Order';
-        $createOrder->slug = 'create-order';
-        $createOrder->save();
+//        $orderServices = new Permission();
+//        $orderServices->display_name = 'Order services';
+//        $orderServices->name = 'order-services';
+//        $orderServices->save();
+//
+//        $createOrder = new Permission();
+//        $createOrder->display_name = 'Create Order';
+//        $createOrder->name = 'create-order';
+//        $createOrder->save();
+//
+//
+//        $adminPermissions = new Permission();
+//        $adminPermissions->display_name = 'Admin';
+//        $adminPermissions->name = 'admin';
+//        $adminPermissions->save();
     }
 }

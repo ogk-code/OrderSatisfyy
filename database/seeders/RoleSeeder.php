@@ -16,18 +16,18 @@ class RoleSeeder extends Seeder
     public function run()
     {
         $client = new Role();
-        $client->name = 'Client';
-        $client->slug = 'client';
+        $client->display_name = 'Client';
+        $client->name = 'client';
         $client->save();
 
         $staff = new Role();
-        $staff->name = 'Staff';
-        $staff->slug = 'staff';
+        $staff->display_name = 'Staff';
+        $staff->name = 'staff';
         $staff->save();
 
         $admin = new Role();
-        $admin->name = "Admin";
-        $admin->slug = "admin";
+        $admin->display_name = "Admin";
+        $admin->name = "admin";
         $admin->save();
     }
 }

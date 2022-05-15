@@ -17,25 +17,38 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $client = Role::where('slug','client')->first();
-        $staff = Role::where('slug', 'staff')->first();
+        $client = Role::where('name','client')->first();
+        $staff = Role::where('name', 'staff')->first();
 
-        $createOrder = Permission::where('slug','create-orders')->first();
-        $orderServices = Permission::where('slug','order-services')->first();
+//        $createOrder = Permission::where('name','create-orders')->first();
+//        $orderServices = Permission::where('name','order-services')->first();
 
-        $user1 = new User();
-        $user1->name = 'Jhon Deo';
-        $user1->email = 'jhon@deo.com';
-        $user1->password = bcrypt('secret');
-        $user1->save();
-        $user1->roles()->attach($client);
-        $user1->permissions()->attach($createOrder);
-        $user2 = new User();
-        $user2->name = 'Mike Thomas';
-        $user2->email = 'mike@thomas.com';
-        $user2->password = bcrypt('secret');
-        $user2->save();
-        $user2->roles()->attach($staff);
-        $user2->permissions()->attach($orderServices);
+        $adminRole = Role::where('name','admin')->first();
+//        $adminPermissions = Permission::where('name','admin')->first();
+
+        $userClient = new User();
+        $userClient->name = 'Jhon Deo';
+        $userClient->email = 'jhon@deo.com';
+        $userClient->password = bcrypt('secret');
+        $userClient->save();
+        $userClient->roles()->attach($client);
+//        $userClient->permissions()->attach($createOrder);
+
+        $userStaff = new User();
+        $userStaff->name = 'Mike Thomas';
+        $userStaff->email = 'mike@thomas.com';
+        $userStaff->password = bcrypt('secret');
+        $userStaff->save();
+        $userStaff->roles()->attach($staff);
+//        $userStaff->permissions()->attach($orderServices);
+
+        $userAdmin = new User();
+        $userAdmin->name = 'root';
+        $userAdmin->email = 'root@gmail.com';
+        $userAdmin->password = bcrypt('root');
+        $userAdmin->save();
+        $userAdmin->roles()->attach($adminRole);
+//        $userAdmin->permissions()->attach($adminPermissions);
+
     }
 }

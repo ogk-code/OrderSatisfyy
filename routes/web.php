@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,3 +42,8 @@ Route::get('/my-orders', function () {
 
 Route::resource('/order', \App\Http\Controllers\OrdersController::class);
 
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
