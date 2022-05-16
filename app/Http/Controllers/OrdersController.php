@@ -58,7 +58,7 @@ class OrdersController extends Controller
         $order->time            = $request->date . " " . $request->time . ":00";
         $order->user_id         = $user->id;
         $order->save();
-        return redirect("/order-list");
+        return redirect("/my-orders");
 
     }
 

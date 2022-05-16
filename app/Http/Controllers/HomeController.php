@@ -25,7 +25,12 @@ class HomeController extends Controller
 
     function IndexAction()
     {
-        return view("index");
+        $categories    = $this->getTableToArray("сategories", ["id", "name"]);
+        $subCategories = $this->getTableToArray("subсategories", ["id", "name", "category_id"]);
+
+        $categoriesArray = $this->generateCategoriesArray($categories, $subCategories);
+
+        return view("index", ["categories" => $categoriesArray]);
     }
 
     function LoginAction()
@@ -132,7 +137,7 @@ class HomeController extends Controller
         }
         $orders = $this->getOrders($user);
 
-        return view("order-list", ["orders" => $orders]);
+        return view("my-orders", ["orders" => $orders]);
     }
 
 
@@ -142,7 +147,7 @@ class HomeController extends Controller
 
 
         if ($user) {
-            $orders = $orders->where("user_id", '=', $user);
+            $orders = $orders->where("user_id", '=', $user->id);
             $name = DB::table("users")->select("name")->where("id", $user->id)->first()->name;
         }
 
