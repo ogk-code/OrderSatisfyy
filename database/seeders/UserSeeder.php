@@ -37,5 +37,12 @@ class UserSeeder extends Seeder
         $user2->save();
         $user2->roles()->attach($staff);
         $user2->permissions()->attach($orderServices);
+        $user3 = new User();
+        $user3->name = 'Ura Lutai';
+        $user3->email = 'ura@lutaicom';
+        $user3->password = bcrypt('secret');
+        $user3->save();
+        $user3->roles()->attach($client);
+        $user3->permissions()->attach($createOrder);
     }
 }
