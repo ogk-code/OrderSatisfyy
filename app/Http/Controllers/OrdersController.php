@@ -87,36 +87,6 @@ class OrdersController extends Controller
             "category"     => Сategories::find($subCategory["category_id"])->toArray(),
         ];
 
-//        $c = [
-//            0 => [
-//                "name"    => "test1",
-//                "id"      => 1,
-//                "subcats" => [
-//                    0 => [
-//                        "name" => "sun_cat1",
-//                        "id"   => 1,
-//                    ],
-//                    1 => [
-//                        "name" => "sun_cat2",
-//                        "id"   => 2,
-//                    ],
-//                ],
-//
-//            ],
-//
-//            1 => [
-//                "name"    => "test2",
-//                "id"      => 2,
-//                "subcats" => [
-//                    0 => [
-//                        "name" => "sun_cat3",
-//                        "id"   => 3,
-//                    ],
-//                ],
-//            ],
-//        ];
-
-
         return view("order", ["order" => $order, "user" => $user, "cats" => $cats]);
     }
 

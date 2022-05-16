@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SubСategories;
+use App\Models\Сategories;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,55 +40,20 @@ class HomeController extends Controller
 
     function CreateOrderAction()
     {
-        $c = [
-            0 => [
-                "name"    => "Категория 1",
-                "id"      => 1,
-                "subcats" => [
-                    0 => [
-                        "name" => "Подкатегория 1 (кат1)",
-                        "id"   => 1,
-                    ],
-                    1 => [
-                        "name" => "Подкатегория 2 (кат1)",
-                        "id"   => 2,
-                    ],
-                    2 => [
-                        "name" => "Подкатегория 3 (кат1)",
-                        "id"   => 3,
-                    ],
-                ],
+        if (!Auth::check()) {
+            redirect("/");
+        }
+        $categories    = $this->getTableToArray("сategories", ["id", "name"]);
+        $subCategories = $this->getTableToArray("subсategories", ["id", "name", "category_id"]);
 
-            ],
+        $categoriesArray = $this->generateCategoriesArray($categories, $subCategories);
 
-            1 => [
-                "name"    => "Категория 2",
-                "id"      => 2,
-                "subcats" => [
-                    0 => [
-                        "name" => "Подкатегория 1 (кат 2)",
-                        "id"   => 3,
-                    ],
-                    1 => [
-                        "name" => "Подкатегория 2 (кат 2)",
-                        "id"   => 4,
-                    ],
-                ],
-            ],
-        ];
-        return view("create-order", ["c"=>$c]);
+        return view("create-order", ["c" => $categoriesArray]);
     }
 
     function OrderListAction()
     {
-        $orders = DB::table("orders")->get()->toArray();
-
-
-        foreach ($orders as $order) {
-            // todo так делать нельзя !  Ставить запрос цикл это пздц, потом исправлю.
-            $order->user = DB::table("users")->select("id", "name")->where("id", $order->user_id)->first()->name;
-        }
-
+        $orders = $this->getOrders();
         return view("order-list", ["orders" => $orders]);
     }
 
@@ -108,11 +75,11 @@ class HomeController extends Controller
     {
 //        !$user->hasRole("client")
         $profile = User::find($id);
-       if ($profile->hasRole("client")){
-           abort(404);
-       }
+        if ($profile->hasRole("client")) {
+            abort(404);
+        }
         $profile = $profile->toArray();
-       return view("user-profile",["profile"=>$profile]);
+        return view("user-profile", ["profile" => $profile]);
 
 
         return view("user-profile");
@@ -122,4 +89,72 @@ class HomeController extends Controller
     {
         return view("order");
     }
+
+    /**
+     * @param string     $table
+     * @param array|null $columns
+     *
+     * @return array
+     */
+    private function getTableToArray(string $table, array|null $columns): array
+    {
+        return DB::table($table)->select($columns)->get()->toArray();
+    }
+
+    private function getTableToArrayWhere(string $table, array|null $columns): array
+    {
+        return DB::table($table)->select($columns)->where("")->get()->toArray();
+    }
+
+    private function generateCategoriesArray($categories, $subCategories)
+    {
+        $categories = array_map(function ($value) {
+            return ["id" => $value->id, "name" => $value->name, "subcats" => []];
+        }, $categories);
+
+        $subCategoriesArray = [];
+        foreach ($subCategories as $subCategory) {
+            $subCategoriesArray[$subCategory->category_id][] = ["id" => $subCategory->id, "name" => $subCategory->name];
+        }
+
+        foreach ($categories as $key => $category) {
+            $categories[$key]["subcats"] = $subCategoriesArray[$category["id"]] ?? [];
+        }
+
+        return $categories;
+    }
+
+    function MyOrdersAction()
+    {
+        $user = User::find(Auth::user()->id);
+        if (!$user) {
+            redirect("/");
+        }
+        $orders = $this->getOrders($user);
+
+        return view("order-list", ["orders" => $orders]);
+    }
+
+
+    private function getOrders($user = null)
+    {
+        $orders = DB::table("orders");
+
+
+        if ($user) {
+            $orders = $orders->where("user_id", '=', $user);
+            $name = DB::table("users")->select("name")->where("id", $user->id)->first()->name;
+        }
+
+        $orders = $orders->get()->toArray();
+
+
+        foreach ($orders as $order) {
+            // todo так делать нельзя !  Ставить запрос цикл это пздц, потом исправлю.
+            $order->user = $user?$name:DB::table("users")->select("name")->where("id", $order->user_id)->first()->name;
+        }
+
+        return $orders;
+    }
+
 }

@@ -23,6 +23,7 @@ Route::get('/register', [\App\Http\Controllers\HomeController::class, 'RegisterA
 Route::get('/create-order', [\App\Http\Controllers\HomeController::class, 'CreateOrderAction']);
 Route::get('/order-list', [\App\Http\Controllers\HomeController::class, 'OrderListAction']);
 Route::get('/user-profile/{id}', [\App\Http\Controllers\HomeController::class, 'UserProfileAction']);
+Route::get('/my-orders', [\App\Http\Controllers\HomeController::class, 'MyOrdersAction']);
 
 Route::get('/FAQ', function () {
     return view('FAQ');
@@ -33,9 +34,7 @@ Route::get('/contacts', function () {
 Route::get('/about-us', function () {
     return view('about-us');
 });
-Route::get('/my-orders', function () {
-    return view('my-orders');
-});
+
 Route::get('/edit-order', function () {
     return view('edit-order');
 });
