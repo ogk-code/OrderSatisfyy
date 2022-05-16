@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\SubСategories;
+use App\Models\Сategories;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -33,7 +34,7 @@ class CategorySeeds extends Seeder
         $this->createSubCategory($categoryId, "Штукатурные работы");
         $this->createSubCategory($categoryId, "Утепление помещений");
 		$this->createSubCategory($categoryId, "Монтаж отопления");
-		
+
 		// Создание категорий (3)
         $categoryId = $this->createCategory("Клининговые услуги");
         // Создание подкатегорий
@@ -42,7 +43,7 @@ class CategorySeeds extends Seeder
         $this->createSubCategory($categoryId, "Уборка после ремонта");
         $this->createSubCategory($categoryId, "Химчистка");
 		$this->createSubCategory($categoryId, "Уборка коттеджей и домов");
-		
+
 		// Создание категорий (4)
         $categoryId = $this->createCategory("Курьерские услуги");
         // Создание подкатегорий
@@ -60,7 +61,7 @@ class CategorySeeds extends Seeder
         $this->createSubCategory($categoryId, "Токарные работы");
         $this->createSubCategory($categoryId, "Плотник");
 		$this->createSubCategory($categoryId, "Кладка кирпича");
-		
+
 		// Создание категорий (6)
         $categoryId = $this->createCategory("Ремонт техники");
         // Создание подкатегорий
@@ -69,7 +70,7 @@ class CategorySeeds extends Seeder
         $this->createSubCategory($categoryId, "Компьютерная помощь");
         $this->createSubCategory($categoryId, "Ремонт цифровой техники");
 		$this->createSubCategory($categoryId, "Ремонт мобильных телефонов");
-		
+
 		// Создание категорий (7)
         $categoryId = $this->createCategory("Логистические и складские услуги");
         // Создание подкатегорий
@@ -78,7 +79,7 @@ class CategorySeeds extends Seeder
         $this->createSubCategory($categoryId, "Вывоз строительного мусора");
         $this->createSubCategory($categoryId, "Перевозка мебели и техники");
 		$this->createSubCategory($categoryId, "Переезд квартиры или офиса");
-		
+
 		// Создание категорий (8)
         $categoryId = $this->createCategory("Бытовые услуги");
         // Создание подкатегорий
@@ -87,7 +88,7 @@ class CategorySeeds extends Seeder
         $this->createSubCategory($categoryId, "Услуги сиделки");
         $this->createSubCategory($categoryId, "Услуги домработницы");
 		$this->createSubCategory($categoryId, "Услуги швеи");
-		
+
 		// Создание категорий (9)
         $categoryId = $this->createCategory("Мебельные работы");
         // Создание подкатегорий
@@ -96,7 +97,7 @@ class CategorySeeds extends Seeder
         $this->createSubCategory($categoryId, "Сборка мебели");
         $this->createSubCategory($categoryId, "Реставрация мебели");
 		$this->createSubCategory($categoryId, "Перетяжка мебели");
-		
+
 		// Создание категорий (10)
         $categoryId = $this->createCategory("Работа в Интернете");
         // Создание подкатегорий
@@ -105,7 +106,7 @@ class CategorySeeds extends Seeder
         $this->createSubCategory($categoryId, "Наполнение сайтов");
         $this->createSubCategory($categoryId, "Набор текста");
 		$this->createSubCategory($categoryId, "Рерайтинг");
-		
+
 		// Создание категорий (11)
         $categoryId = $this->createCategory("Дизайн");
         // Создание подкатегорий
@@ -114,7 +115,7 @@ class CategorySeeds extends Seeder
         $this->createSubCategory($categoryId, "Дизайн сайта");
         $this->createSubCategory($categoryId, "Дизайн полиграфии");
 		$this->createSubCategory($categoryId, "Услуги печати");
-		
+
 		// Создание категорий (12)
         $categoryId = $this->createCategory("Разработка сайтов и приложений");
         // Создание подкатегорий
@@ -123,7 +124,7 @@ class CategorySeeds extends Seeder
         $this->createSubCategory($categoryId, "Создание целевой страницы");
         $this->createSubCategory($categoryId, "Продвижение сайтов");
 		$this->createSubCategory($categoryId, "Верстка сайта");
-		
+
 		// Создание категорий (13)
         $categoryId = $this->createCategory("Разработка сайтов и приложений");
         // Создание подкатегорий
@@ -132,7 +133,7 @@ class CategorySeeds extends Seeder
         $this->createSubCategory($categoryId, "Создание целевой страницы");
         $this->createSubCategory($categoryId, "Продвижение сайтов");
 		$this->createSubCategory($categoryId, "Верстка сайта");
-		
+
 		// Создание категорий (14)
         $categoryId = $this->createCategory("Бюро переводов");
         // Создание подкатегорий
@@ -141,7 +142,7 @@ class CategorySeeds extends Seeder
         $this->createSubCategory($categoryId, "Перевод документов и нотариальное заверение");
         $this->createSubCategory($categoryId, "Устные переводы");
 		$this->createSubCategory($categoryId, "Технический перевод");
-		
+
 		// Создание категорий (15)
         $categoryId = $this->createCategory("Реклама в Интернете");
         // Создание подкатегорий
@@ -150,7 +151,7 @@ class CategorySeeds extends Seeder
         $this->createSubCategory($categoryId, "Настройка контекстной рекламы");
         $this->createSubCategory($categoryId, "SEO оптимизация сайта");
 		$this->createSubCategory($categoryId, "Размещение постов на форумах");
-		
+
 		// Создание категорий (16)
         $categoryId = $this->createCategory("Фото- и видео- услуги");
         // Создание подкатегорий
@@ -159,7 +160,7 @@ class CategorySeeds extends Seeder
         $this->createSubCategory($categoryId, "Обработка фотографий");
         $this->createSubCategory($categoryId, "Монтаж видео");
 		$this->createSubCategory($categoryId, "Оцифровка видеокассет");
-		
+
 		// Создание категорий (17)
         $categoryId = $this->createCategory("Организация праздников");
         // Создание подкатегорий
@@ -168,7 +169,7 @@ class CategorySeeds extends Seeder
         $this->createSubCategory($categoryId, "Услуги аниматоров");
         $this->createSubCategory($categoryId, "Организация питания");
 		$this->createSubCategory($categoryId, "Выпечка и десерты");
-		
+
 		// Создание категорий (18)
         $categoryId = $this->createCategory("Деловые услуги");
         // Создание подкатегорий
@@ -177,7 +178,7 @@ class CategorySeeds extends Seeder
         $this->createSubCategory($categoryId, "Риэлтор");
         $this->createSubCategory($categoryId, "Услуги колл-центра");
 		$this->createSubCategory($categoryId, "Финансовые услуги");
-		
+
 		// Создание категорий (19)
         $categoryId = $this->createCategory("Услуги репетиторов");
         // Создание подкатегорий
@@ -186,7 +187,7 @@ class CategorySeeds extends Seeder
         $this->createSubCategory($categoryId, "Написание работ");
         $this->createSubCategory($categoryId, "Преподаватели музыки");
 		$this->createSubCategory($categoryId, "Автоинструкторы");
-		
+
 		// Создание категорий (20)
         $categoryId = $this->createCategory("Услуги красоты и здоровья");
         // Создание подкатегорий
@@ -195,7 +196,7 @@ class CategorySeeds extends Seeder
         $this->createSubCategory($categoryId, "Косметология");
         $this->createSubCategory($categoryId, "Уход за ресницами");
 		$this->createSubCategory($categoryId, "Уход за бровями");
-		
+
 		// Создание категорий (21)
         $categoryId = $this->createCategory("Ремонт авто");
         // Создание подкатегорий
@@ -204,7 +205,7 @@ class CategorySeeds extends Seeder
         $this->createSubCategory($categoryId, "Автоэлектрика");
         $this->createSubCategory($categoryId, "Кузовные работы");
 		$this->createSubCategory($categoryId, "Двигатель");
-		
+
 		// Создание категорий (22)
         $categoryId = $this->createCategory("Услуги для животных");
         // Создание подкатегорий
@@ -213,7 +214,7 @@ class CategorySeeds extends Seeder
         $this->createSubCategory($categoryId, "Гостиница для животных");
         $this->createSubCategory($categoryId, "Перевозка животных");
 		$this->createSubCategory($categoryId, "Уход за рыбками");
-		
+
 		// Создание категорий (23)
         $categoryId = $this->createCategory("Услуги тренеров");
         // Создание подкатегорий
@@ -222,7 +223,7 @@ class CategorySeeds extends Seeder
         $this->createSubCategory($categoryId, "Водные виды спорта");
         $this->createSubCategory($categoryId, "Силовые виды спорта");
 		$this->createSubCategory($categoryId, "Боевые искусства");
-		
+
 		// Создание категорий (23)
         $categoryId = $this->createCategory("Другие категории");
         // Создание подкатегорий
@@ -233,13 +234,15 @@ class CategorySeeds extends Seeder
 		$this->createSubCategory($categoryId, "Бизнес");
     }
     private function createCategory($categoryName){
-        $category = new CategorySeeds();
+        $category = new Сategories();
         $category->name = $categoryName;
-        return $category->save();
+        $category->save();
+        return $category->id;
     }
     private function createSubCategory($categoryId, $subCategoryName){
         $subCategory = new SubСategories();
         $subCategory->name = $subCategoryName;
         $subCategory->category_id = $categoryId;
+        $subCategory->save();
     }
 }
