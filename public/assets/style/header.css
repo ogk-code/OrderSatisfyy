@@ -4,6 +4,7 @@ header{
     font-family: "Comic Sans", sans-serif;
     padding: 15px 100px;
     line-height: 0;
+    border-bottom: 1px solid #ced4da;
 }
 
 header .logo-container{

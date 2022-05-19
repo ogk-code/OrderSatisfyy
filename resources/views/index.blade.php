@@ -113,230 +113,24 @@
     </div>
 
   </div>
-</section><!-- End Clients Section -->
+</section>
 
-<!-- Work Categories -->
 <div class="container">
   <hr>
-  <div class="row">
-    <div class="col"><h2 class="heading">Домашний мастер</h2>
-      <ul>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Сантехник</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Электрик</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Муж на час</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Столяр</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Слесарь</a></li>
-      </ul>
+    <div class="row justify-content-center">
+    @foreach($categories as $category)
+        <div class="col-3"><h2 class="heading">{{$category["name"]}}</h2>
+            <ul>
+                @foreach($category["subcats"] as $subcategories)
+                <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">{{$subcategories["name"]}}</a></li>
+                @endforeach
+            </ul>
+        </div>
+    @endforeach
     </div>
-    <div class="col"><h2 class="heading">Отделочные работы</h2>
-      <ul>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Ремонт квартир</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Укладка плитки</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Штукатурные работы</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Утепление помещений</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Монтаж отопления</a></li>
-      </ul>
-    </div>
-    <div class="col"><h2 class="heading">Клининговые услуги</h2>
-      <ul>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Уборка квартир</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Генеральная уборка</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Уборка после ремонта</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Химчистка</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Уборка коттеджей и домов</a></li>
-      </ul>
-    </div>
-    <div class="col"><h2 class="heading">Курьерские услуги</h2>
-      <ul>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Курьерская доставка</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Доставка продуктов</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Доставка готовой еды</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Доставка лекарств</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Курьер на авто</a></li>
-      </ul>
-    </div>
-    <div class="w-100"></div>
-    <div class="col"><h2 class="heading">Строительные работы</h2>
-      <ul>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Разнорабочие</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Сварочные работы</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Токарные работы</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Плотник</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Кладка кирпича</a></li>
-      </ul>
-    </div>
-    <div class="col"><h2 class="heading">Ремонт техники</h2>
-      <ul>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Ремонт крупной бытовой техники</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Ремонт мелкой бытовой техники</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Компьютерная помощь</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Ремонт цифровой техники</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Ремонт мобильных телефонов</a></li>
-      </ul>
-    </div>
-    <div class="col"><h2 class="heading">Логистические и складские услуги</h2>
-      <ul>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Грузоперевозки</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Услуги грузчиков</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Вывоз строительного мусора</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Перевозка мебели и техники</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Переезд квартиры или офиса</a></li>
-      </ul></div>
-    <div class="col"><h2 class="heading">Бытовые услуги</h2>
-      <ul>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Сад и огород</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Няни</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Услуги сиделки</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Услуги домработницы</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Услуги швеи</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col"><h2 class="heading">Мебельные работы</h2>
-      <ul>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Изготовление мебели</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Ремонт мебели</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Сборка мебели</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Реставрация мебели</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Перетяжка мебели</a></li>
-      </ul>
-    </div>
-    <div class="col"><h2 class="heading">Работа в Интернете</h2>
-      <ul>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Копирайтинг</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Сбор, поиск информации</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Наполнение сайтов</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Набор текста</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Рерайтинг</a></li>
-      </ul>
-    </div>
-    <div class="col"><h2 class="heading">Дизайн</h2>
-      <ul>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Разработка логотипов</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Дизайн интерьера</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Дизайн сайта</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Дизайн полиграфии</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Услуги печати</a></li>
-      </ul>
-    </div>
-    <div class="col"><h2 class="heading">Разработка сайтов и приложений</h2>
-      <ul>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Создание сайтов</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Доработка сайта</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Создание целевой страницы</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Продвижение сайтов</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Верстка сайта</a></li>
-      </ul>
-    </div>
-    <div class="w-100"></div>
-    <div class="col"><h2 class="heading">Бюро переводов</h2>
-      <ul>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Письменные переводы</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Редактура перевода</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Перевод документов и нотариальное заверение</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Устные переводы</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Технический перевод</a></li>
-      </ul>
-    </div>
-    <div class="col"><h2 class="heading">Реклама в Интернете</h2>
-      <ul>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Реклама в социальных сетях</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Размещение объявлений</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Настройка контекстной рекламы</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">SEO оптимизация сайта</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Размещение постов на форумах</a></li>
-      </ul>
-    </div>
-    <div class="col"><h2 class="heading">Фото- и видео- услуги</h2>
-      <ul>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Фотограф</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Видеооператор</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Обработка фотографий</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Монтаж видео</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Оцифровка видеокассет</a></li>
-      </ul>
-    </div>
-    <div class="col"><h2 class="heading">Организация праздников</h2>
-      <ul>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Услуги ведущего</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Музыкальное сопровождение</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Услуги аниматоров</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Организация питания</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Выпечка и десерты</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col"><h2 class="heading">Деловые услуги</h2>
-      <ul>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Бухгалтерские услуги</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Юридические услуги</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Риэлтор</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Услуги колл-центра</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Финансовые услуги</a></li>
-      </ul>
-    </div>
-    <div class="col"><h2 class="heading">Услуги репетиторов</h2>
-      <ul>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Преподаватели по предметам</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Репетиторы иностранных языков</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Написание работ</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Преподаватели музыки</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Автоинструкторы</a></li>
-      </ul>
-    </div>
-    <div class="col"><h2 class="heading">Услуги красоты и здоровья</h2>
-      <ul>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Массаж</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Уход за ногтями</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Косметология</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Уход за ресницами</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Уход за бровями</a></li>
-      </ul>
-    </div>
-    <div class="col"><h2 class="heading">Ремонт авто</h2>
-      <ul>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Помощь в дороге</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Техническое обслуживание и диагностика</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Автоэлектрика</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Кузовные работы</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Двигатель</a></li>
-      </ul>
-    </div>
-    <div class="w-100"></div>
-    <div class="col"><h2 class="heading">Услуги для животных</h2>
-      <ul>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Уход за котами</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Уход за собаками</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Гостиница для животных</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Перевозка животных</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Уход за рыбками</a></li>
-      </ul>
-    </div>
-    <div class="col"><h2 class="heading">Услуги тренеров</h2>
-      <ul>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Йога и фитнес</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Игровые виды спорта</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Водные виды спорта</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Силовые виды спорта</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Боевые искусства</a></li>
-      </ul>
-    </div>
-    <div class="col"><h2 class="heading">Другие категории</h2>
-      <ul>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Дом</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Доставка</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Фриланс</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Преподавание</a></li>
-        <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">Бизнес</a></li>
-      </ul>
-    </div>
-    <div class="col"></div>
-  </div>
   <hr class="howitworks" id="howitworks">
 </div>
-</div><!-- End Work Categories -->
+<!-- End Work Categories -->
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
