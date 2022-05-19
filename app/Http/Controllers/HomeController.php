@@ -64,7 +64,7 @@ class HomeController extends Controller
         $filters["c"]  = $filters["c"] ?? null;
         $filters["sc"] = $filters["sc"] ?? null;
 
-        if($filters["sc"]="all"){
+        if($filters["sc"]=="all"){
             $filters["sc"] = null;
         }
 
