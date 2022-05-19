@@ -6,6 +6,7 @@ $(document).ready(function () {
 
     $(document).on('click', '.opt-categories', function () {
         const id = $(this).attr("data-id");
+        location.href = `/order-list?c=${id}`;
     });
 
     let orders = new Bloodhound({
