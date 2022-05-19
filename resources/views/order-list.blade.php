@@ -84,8 +84,7 @@
     </div>
 </div>
 @include("parts.footer")
-<script src="{{env("APP_URL")}}/assets/js/categories.js"></script>
-<script>fillingCategories('<?php echo json_encode($c); ?>');</script>
 <script src="{{env("APP_URL")}}/assets/js/categories-get.js"></script>
+<script>fillingCategories('<?php echo json_encode($c); ?>');</script>
 </body>
 </html>
