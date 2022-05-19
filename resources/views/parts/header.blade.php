@@ -1,4 +1,5 @@
 <header>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="logo-container">
         <span class="logo"><a href="{{env("APP_URL")}}">ORDER/SATISFY</a></span>
 
@@ -15,15 +16,20 @@
         <a href="{{env("APP_URL")}}/order-list">
             <button type="button" class="btn btn-warning item">Все заказы</button>
         </a>
-        <div class="item" style="width: 200px">
-            <select class="js-selectize" name="order" placeholder="Поиск заказов">
-                <option value=""></option>
-                <option value="1">Сантехник</option>
-                <option value="2">Электрик</option>
-                <option value="3">Столяр</option>
-                <option value="4">Слесарь</option>
-            </select>
-        </div>
+        <form class="item">
+            <div class="typeahead__container">
+                <div class="typeahead__field">
+                    <div class="typeahead__query">
+                        <input id="typeahead" name="search" placeholder="Поиск заказов" autocomplete="off">
+                    </div>
+                    <div class="typeahead__button">
+                        <button type="submit">
+                            <i class="typeahead__search-icon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
         @endrole
     </div>
     <div>

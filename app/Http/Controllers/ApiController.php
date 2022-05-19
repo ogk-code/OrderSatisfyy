@@ -7,11 +7,14 @@ use Illuminate\Support\Facades\DB;
 
 class ApiController extends Controller
 {
-    public function search(Request $request)
+    public function search(Request $request, $searchData)
     {
-        $searchData = $request->post("search_data");
-        $foundData  = DB::table("orders")->select("id", "name")->where("name", "like",
-            "%" . $searchData . "%");
+        $foundData = ["orders" => [],
+            "categories"=>[]];
+        $foundData["orders"][] = DB::table("orders")->select("id", "name")->where("name", "like",
+            "%" . $searchData . "%")->get()->toArray();
+        $foundData["categories"][] = DB::table("сategories")->select("id", "name")->where("name", "like",
+            "%" . $searchData . "%")->get()->toArray();
         return json_encode($foundData);
     }
 }

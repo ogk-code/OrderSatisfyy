@@ -2,7 +2,6 @@
     <div class="footer-top">
         <div class="container">
             <div class="row">
-
                 <div class="col-lg-4 col-md-6">
                     <div class="footer-info">
                         <h3>Order/Satisfy</h3>
@@ -21,7 +20,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-lg-4 col-md-6 footer-links">
                     <h4>Полезные ссылки</h4>
                     <ul>
@@ -33,7 +31,6 @@
                                 нами</a></li>
                     </ul>
                 </div>
-
                 <div class="col-lg-4 col-md-6 footer-newsletter">
                     <h4>Наша новостная лента</h4>
                     <p>Подпишитесь на рассылку новых уведомлений нашего сервиса</p>
@@ -53,14 +50,8 @@
     </div>
 </footer>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.5/css/selectize.default.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/microplugin/0.0.3/microplugin.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sifter/0.6.0/sifter.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.5/js/selectize.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('.js-selectize').selectize();
-    });
-</script>
+<script src="//twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.11.0/jquery.typeahead.min.css">
+<script src="{{env("APP_URL")}}/assets/js/search.js"></script>

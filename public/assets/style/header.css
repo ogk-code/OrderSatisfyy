@@ -30,3 +30,41 @@ header .logo a {
 .item{
     margin-left: 15px;
 }
+
+.tt-hint {
+    color: #8a8a8a;
+}
+
+.tt-menu {
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    color: #464646;
+    /*max-height: 250px;
+    overflow: auto;*/
+    text-align: left;
+}
+
+.tt-suggestion {
+    font-weight: normal;
+    line-height: 18px;
+    padding: 9px 43px 9px 15px;
+    white-space: nowrap;
+}
+
+.tt-suggestion:hover,
+.tt-suggestion.tt-cursor {
+    background-color: #fafafa;
+}
+
+.tt-suggestion:hover {
+    cursor: pointer;
+}
+
+.tt-suggestion p {
+    margin: 0;
+}
+
+.typeahead-title{
+    padding: 9px 43px 0 10px;
+}
