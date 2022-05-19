@@ -157,7 +157,12 @@ class HomeController extends Controller
         }
         $orders = $this->getOrders($user);
 
-        return view("my-orders", ["orders" => $orders]);
+        $categories    = $this->getTableToArray("сategories", ["id", "name"]);
+        $subCategories = $this->getTableToArray("subсategories", ["id", "name", "category_id"]);
+
+        $categoriesArray = $this->generateCategoriesArray($categories, $subCategories);
+
+        return view("my-orders", ["orders" => $orders, "c" => $categoriesArray]);
     }
 
 
