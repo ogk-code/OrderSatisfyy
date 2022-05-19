@@ -51,7 +51,7 @@ class OrdersController extends Controller
 
 
         $order->name            = $request->title;
-        $order->sub_category_id = 1;
+        $order->sub_category_id = $request->subcategory;
         $order->description     = $request->description;
         $order->adrss           = $request->adrss;
         $order->budget          = $request->price;
