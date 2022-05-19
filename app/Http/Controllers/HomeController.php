@@ -148,7 +148,20 @@ class HomeController extends Controller
 
     private function getOrders($user = null, $category = null, $subCategory = null)
     {
-        $orders = DB::table("orders");
+        $orders = DB::table("orders")->select([
+            "orders.id",
+            "orders.sub_category_id",
+            "orders.name",
+            "description",
+            "adrss",
+            "budget",
+            "user_id",
+            "time",
+            "status",
+            "edited",
+            "category_id",
+            "category_id",
+            ]);
 
         if ($category) {
             $orders = $orders->join("subсategories", "sub_category_id", "=", "subсategories.id")
