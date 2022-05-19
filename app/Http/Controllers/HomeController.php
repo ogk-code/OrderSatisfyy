@@ -218,4 +218,24 @@ class HomeController extends Controller
         return redirect("/order-list");
     }
 
+    public function deleteOrder(Request $request)
+    {
+        $id   = $request->post("id");
+        $user_id = User::find(Auth::user()->id);
+
+        if (!$id){
+            return redirect("/");
+        }
+
+        $order = Orders::find($id);
+
+        // если каким то хуем так вышло, что заказ пытается удалить не его владелец
+        if($order->user_id!=$user_id){
+            return redirect("/");
+        }
+
+        User::destroy($id);
+
+    }
+
 }

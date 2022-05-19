@@ -24,6 +24,7 @@ Route::get('/create-order', [\App\Http\Controllers\HomeController::class, 'Creat
 Route::get('/order-list', [\App\Http\Controllers\HomeController::class, 'OrderListAction']);
 Route::get('/user-profile/{id}', [\App\Http\Controllers\HomeController::class, 'UserProfileAction']);
 Route::get('/my-orders', [\App\Http\Controllers\HomeController::class, 'MyOrdersAction']);
+Route::post('/delete-order', [\App\Http\Controllers\HomeController::class, 'deleteOrder']);
 
 Route::get('/FAQ', function () {
     return view('FAQ');
