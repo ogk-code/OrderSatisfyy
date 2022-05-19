@@ -59,8 +59,12 @@ class HomeController extends Controller
 
     function OrderListAction()
     {
+        $categories    = $this->getTableToArray("сategories", ["id", "name"]);
+        $subCategories = $this->getTableToArray("subсategories", ["id", "name", "category_id"]);
+
+        $categoriesArray = $this->generateCategoriesArray($categories, $subCategories);
         $orders = $this->getOrders();
-        return view("order-list", ["orders" => $orders]);
+        return view("order-list", ["orders" => $orders, "c"=>$categoriesArray]);
     }
 
     public function logout(Request $request)
@@ -149,7 +153,7 @@ class HomeController extends Controller
 
         if ($user) {
 
-            $orders = $orders->where("user_id", '=', $user);
+            $orders = $orders->where("user_id", '=', $user->id);
             $name   = DB::table("users")->select("name")->where("id", $user->id)->first()->name;
 
         }
