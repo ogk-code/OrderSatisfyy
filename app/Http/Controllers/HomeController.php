@@ -63,8 +63,8 @@ class HomeController extends Controller
         $subCategories = $this->getTableToArray("subсategories", ["id", "name", "category_id"]);
 
         $categoriesArray = $this->generateCategoriesArray($categories, $subCategories);
-        $orders = $this->getOrders();
-        return view("order-list", ["orders" => $orders, "c"=>$categoriesArray]);
+        $orders          = $this->getOrders(null, 1);
+        return view("order-list", ["orders" => $orders, "c" => $categoriesArray]);
     }
 
     public function logout(Request $request)
@@ -146,9 +146,14 @@ class HomeController extends Controller
     }
 
 
-    private function getOrders($user = null)
+    private function getOrders($user = null, $category = null, $subCategory = null)
     {
         $orders = DB::table("orders");
+
+        if ($category) {
+            $orders = $orders->join("subсategories", "sub_category_id", "=", "subсategories.id")
+                ->where("subсategories.category_id", "=", $category);
+        }
 
 
         if ($user) {
