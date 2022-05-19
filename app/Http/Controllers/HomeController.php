@@ -160,7 +160,6 @@ class HomeController extends Controller
             "status",
             "edited",
             "category_id",
-            "category_id",
             ]);
 
         if ($category) {
