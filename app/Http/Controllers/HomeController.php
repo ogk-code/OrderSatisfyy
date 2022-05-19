@@ -197,15 +197,19 @@ class HomeController extends Controller
 
     public function updateOrderAction(Request $request)
     {
-        $user = User::find(Auth::user()->id);
+        $id   = $request->post("id");
+        $user_id = User::find(Auth::user()->id);
 
-        // todo Если у пользователя нет прав на создания заказа редеректим на индекс
-        if (!$user->hasRole("client")) {
+        if (!$id){
             return redirect("/");
         }
 
-        $order = new Orders();
+        $order = Orders::find($id);
 
+        // если каким то хуем так вышло, что заказ пытается удалить не его владелец
+        if($order->user_id!=$user_id){
+            return redirect("/");
+        }
 
         $order->name            = $request->title;
         $order->sub_category_id = $request->subcategory;
@@ -213,7 +217,8 @@ class HomeController extends Controller
         $order->adrss           = $request->adrss;
         $order->budget          = $request->price;
         $order->time            = $request->date . " " . $request->time . ":00";
-        $order->user_id         = $user->id;
+        $order->edit            = true;
+
         $order->save();
         return redirect("/order-list");
     }
@@ -236,6 +241,30 @@ class HomeController extends Controller
 
         User::destroy($id);
 
+    }
+
+    public function editOrderAction(Request $request, $id){
+        $user_id = User::find(Auth::user()->id);
+
+        $order = Orders::find($id);
+
+        if (!$id){
+            return redirect("/");
+        }
+        if($order->user_id!=$user_id){
+            return redirect("/");
+        }
+
+
+        if (!Auth::check()) {
+            redirect("/");
+        }
+        $categories    = $this->getTableToArray("сategories", ["id", "name"]);
+        $subCategories = $this->getTableToArray("subсategories", ["id", "name", "category_id"]);
+
+        $categoriesArray = $this->generateCategoriesArray($categories, $subCategories);
+
+        return view("edit-order", ["c" => $categoriesArray]);
     }
 
 }
