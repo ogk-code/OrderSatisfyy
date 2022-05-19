@@ -62,7 +62,16 @@ class HomeController extends Controller
         $filters = $request->all();
 
         $filters["c"]  = $filters["c"] ?? null;
-        $filters["sc"] = $filters["c"] ?? null;
+        $filters["sc"] = $filters["sc"] ?? null;
+
+        if($filters["sc"]="all"){
+            $filters["sc"] = null;
+        }
+
+        if ($filters["c"]=="all"){
+            $filters["c"] = null;
+        }
+
 
 
         $categories    = $this->getTableToArray("сategories", ["id", "name"]);
