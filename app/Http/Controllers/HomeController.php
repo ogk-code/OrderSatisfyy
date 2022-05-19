@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Orders;
 use App\Models\SubСategories;
 use App\Models\Сategories;
 use App\Models\User;
@@ -58,8 +59,12 @@ class HomeController extends Controller
 
     function OrderListAction()
     {
+        $categories    = $this->getTableToArray("сategories", ["id", "name"]);
+        $subCategories = $this->getTableToArray("subсategories", ["id", "name", "category_id"]);
+
+        $categoriesArray = $this->generateCategoriesArray($categories, $subCategories);
         $orders = $this->getOrders();
-        return view("order-list", ["orders" => $orders]);
+        return view("order-list", ["orders" => $orders, "c"=>$categoriesArray]);
     }
 
     public function logout(Request $request)
@@ -147,8 +152,10 @@ class HomeController extends Controller
 
 
         if ($user) {
+
             $orders = $orders->where("user_id", '=', $user->id);
-            $name = DB::table("users")->select("name")->where("id", $user->id)->first()->name;
+            $name   = DB::table("users")->select("name")->where("id", $user->id)->first()->name;
+
         }
 
         $orders = $orders->get()->toArray();
@@ -156,10 +163,33 @@ class HomeController extends Controller
 
         foreach ($orders as $order) {
             // todo так делать нельзя !  Ставить запрос цикл это пздц, потом исправлю.
-            $order->user = $user?$name:DB::table("users")->select("name")->where("id", $order->user_id)->first()->name;
+            $order->user = $user ? $name : DB::table("users")->select("name")->where("id", $order->user_id)->first()->name;
         }
 
         return $orders;
+    }
+
+    public function updateOrderAction(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+
+        // todo Если у пользователя нет прав на создания заказа редеректим на индекс
+        if (!$user->hasRole("client")) {
+            return redirect("/");
+        }
+
+        $order = new Orders();
+
+
+        $order->name            = $request->title;
+        $order->sub_category_id = $request->subcategory;
+        $order->description     = $request->description;
+        $order->adrss           = $request->adrss;
+        $order->budget          = $request->price;
+        $order->time            = $request->date . " " . $request->time . ":00";
+        $order->user_id         = $user->id;
+        $order->save();
+        return redirect("/order-list");
     }
 
 }
