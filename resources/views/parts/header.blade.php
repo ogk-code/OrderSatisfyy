@@ -22,11 +22,6 @@
                     <div class="typeahead__query">
                         <input id="typeahead" name="search" placeholder="Поиск заказов" autocomplete="off">
                     </div>
-                    <div class="typeahead__button">
-                        <button type="submit">
-                            <i class="typeahead__search-icon"></i>
-                        </button>
-                    </div>
                 </div>
             </div>
         </form>

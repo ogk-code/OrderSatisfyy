@@ -1,3 +1,11 @@
+<?php
+    $status = [
+        0 => "Ждёт выполнения",
+        1 =>"В процессе",
+        2 =>"Выполнен",
+        3 =>"Просрочен"
+    ];
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -56,14 +64,14 @@
                         </h5>
                         <p class="text-sm">{{$order->description}}<span class="op-6"></span></p>
                         <div class="text-sm op-5"><a class="text-black mr-2" href="#">#Темы заказов для обсуждения</a>
-                            <a href="">Удалить</a>
+                            <span style="color: #d9232d" data-id="{{$order->id}}" class="delete">Удалить</span>
                         </div>
                     </div>
 
 
                     <div class="col-md-5 op-7">
                         <div class="row text-center op-7">
-                            <div class="col px-2"><span class="d-block text-sm">status</span></div>
+                            <div class="col px-2"><span class="d-block text-sm">{{$status[$order->status]}}</span></div>
                             <div class="col px-2"><i class="ion-ios-chatboxes-outline icon-1x"></i> <span
                                     class="d-block text-sm">Ответы</span></div>
                             <div class="col px-2"><i class="ion-ios-compose-outline icon-1x"></i> <span
@@ -84,8 +92,8 @@
     </div>
 </div>
 @include("parts.footer")
-<script src="{{env("APP_URL")}}/assets/js/categories.js"></script>
-<script>fillingCategories('<?php echo json_encode(""); ?>');</script>
 <script src="{{env("APP_URL")}}/assets/js/categories-get.js"></script>
+<script>fillingCategories('<?php echo json_encode($c); ?>');</script>
+<script src="{{env("APP_URL")}}/assets/js/my-orders.js"></script>
 </body>
 </html>
