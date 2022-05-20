@@ -6,6 +6,11 @@ use Illuminate\Support\Facades\DB;$status = [
     3 =>"Просрочен"
 ];
 
+function getCatId($subCatId){
+    return DB::table("subсategories")
+        ->select("category_id")
+        ->where("id","=",$subCatId)->get()->first()->category_id;
+}
 
 function getCatName($subCatId){
     $id = DB::table("subсategories")
@@ -19,7 +24,6 @@ function getSubCatName($subCatId){
         ->select("name")
         ->where("id","=",$subCatId)->get()->first()->name;
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -78,7 +82,8 @@ function getSubCatName($subCatId){
                             <a href="{{env("APP_URL")."/order/".$order->id}}" class="text-primary">{{$order->name}}</a>
                         </h5>
                         <p class="text-sm">{{$order->description}}<span class="op-6"></span></p>
-                        <div class="text-sm op-5"><a class="text-black mr-2" href="#">#Кат</a>
+                        <div class="text-sm op-5">
+                            <a class="text-black mr-2" href="/order-list?c={{getCatId($order->sub_category_id)}}&sc={{$order->sub_category_id}}">#{{getCatName($order->sub_category_id)}}#{{getSubCatName($order->sub_category_id)}}</a>
                         </div>
                     </div>
 
@@ -86,10 +91,14 @@ function getSubCatName($subCatId){
                     <div class="col-md-5 op-7">
                         <div class="row text-center op-7">
                             <div class="col px-2"><span class="d-block text-sm">{{$status[$order->status]}}</span></div>
-                            <div class="col px-2"><i class="ion-ios-person-outline icon-1x"></i> <span
-                                    class="d-block text-sm">{{$order->user}}</span></div>
-                            <div class="col px-2"><i class="ion-ios-chatboxes-outline icon-1x"></i> <span
-                                    class="d-block text-sm">Ответы</span></div>
+                            <div class="col px-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                </svg>
+                                <span class="d-block text-sm">{{$order->user}}</span></div>
+<!--                            <div class="col px-2"><i class="ion-ios-chatboxes-outline icon-1x"></i> <span
+                                    class="d-block text-sm">Ответы</span></div>-->
                         </div>
                     </div>
                 </div>
