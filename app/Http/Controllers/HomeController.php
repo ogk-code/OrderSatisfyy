@@ -212,7 +212,7 @@ class HomeController extends Controller
     public function updateOrderAction(Request $request)
     {
         $id   = $request->post("id");
-        $user_id = User::find(Auth::user()->id);
+        $user = User::find(Auth::user()->id);
 
         if (!$id){
             return redirect("/");
@@ -221,7 +221,7 @@ class HomeController extends Controller
         $order = Orders::find($id);
 
         // если каким то хуем так вышло, что заказ пытается удалить не его владелец
-        if($order->user_id!=$user_id){
+        if($order->user_id!=$user->id){
             return redirect("/");
         }
 
@@ -240,32 +240,32 @@ class HomeController extends Controller
     public function deleteOrder(Request $request)
     {
         $id   = $request->post("id");
-        $user_id = User::find(Auth::user()->id);
+        $user = User::find(Auth::user()->id);
 
         if (!$id){
-            return redirect("/");
+            return response("Не заебись, не удалил(",403);
         }
 
         $order = Orders::find($id);
 
         // если каким то хуем так вышло, что заказ пытается удалить не его владелец
-        if($order->user_id!=$user_id){
-            return redirect("/");
+        if($order->user_id!=$user->id){
+            return response("Не заебись, не удалил(",403);
         }
 
-        User::destroy($id);
-
+        Orders::destroy($id);
+        return response("Заебись удалил",200);
     }
 
     public function editOrderAction(Request $request, $id){
-        $user_id = User::find(Auth::user()->id);
+        $user = User::find(Auth::user()->id);
 
         $order = Orders::find($id);
 
         if (!$id){
             return redirect("/");
         }
-        if($order->user_id!=$user_id){
+        if($order->user_id!=$user->id){
             return redirect("/");
         }
 
@@ -278,7 +278,7 @@ class HomeController extends Controller
 
         $categoriesArray = $this->generateCategoriesArray($categories, $subCategories);
 
-        return view("edit-order", ["c" => $categoriesArray]);
+        return view("edit-order", ["c" => $categoriesArray, "order"=>$order]);
     }
 
 }

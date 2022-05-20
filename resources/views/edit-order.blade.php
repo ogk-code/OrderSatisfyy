@@ -28,35 +28,12 @@
 
     <div class="row">
         <div class="col align-self-center">
-            <form action="{{route("order.store")}}" method="post">    <hr class="order mb-4">
+            <form action="/update-order" method="post">    <hr class="order mb-4">
                 @csrf
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label>Категория заказа</label>
                         <select name="category" class="form-control" id="category" required>
-                            <option value="nonen" selected>Выбрать категорию...</option>
-                            <option value="Бытовыеуслуги">Бытовые услуги</option>
-                            <option value="Бюропереводов">Бюро переводов</option>
-                            <option value="Деловыеуслуги">Деловые услуги</option>
-                            <option value="Дизайн">Дизайн</option>
-                            <option value="Домашниймастер">Домашний мастер</option>
-                            <option value="Клининговыеуслуги">Клининговые услуги</option>
-                            <option value="Курьерскиеуслуги">Курьерские услуги</option>
-                            <option value="Логистическиеискладскиеуслуги">Логистические и складские услуги</option>
-                            <option value="Мебельныеработы">Мебельные работы</option>
-                            <option value="Организацияпраздников">Организация праздников</option>
-                            <option value="Отделочныеработы">Отделочные работы</option>
-                            <option value="Работавинтернете">Работа в интернете</option>
-                            <option value="Разработкасайтов">Разработка сайтов</option>
-                            <option value="Рекламаимаркетинг">Реклама и маркетинг</option>
-                            <option value="Ремонтавто">Ремонт авто</option>
-                            <option value="Ремонттехники">Ремонт техники</option>
-                            <option value="Строительныеработы">Строительные работы</option>
-                            <option value="Услугидляживотных">Услуги для животных</option>
-                            <option value="Услугикрасотыиздоровья">Услуги красоты и здоровья</option>
-                            <option value="Услугирепетиторов">Услуги репетиторов</option>
-                            <option value="Услугитренеров">Услуги тренеров</option>
-                            <option value="Фотоивидеоуслуги">Фото- и видео- услуги</option>
                         </select>
                         <div class="invalid-feedback">
                             Выберите нужную категорию заказа.
@@ -65,8 +42,6 @@
                     <div class="col-md-6 mb-3">
                         <label>Подкатегория заказа</label>
                         <select name="subcategory" class="form-control" id="subcategory" required>
-                            <option value="nonen" selected>Выбрать подкатегорию...</option>
-                            <option value="Бытовыеуслуги">Бытовые услуги</option>
                         </select>
                         <div class="invalid-feedback">
                             Выберите нужную подкатегорию заказа.
@@ -135,5 +110,7 @@
 </div><br>
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 @include("parts.footer")
+<script src="{{env("APP_URL")}}/assets/js/categories.js"></script>
+<script>fillingCategories('<?php echo json_encode($c); ?>');</script>
 </body>
 </html>

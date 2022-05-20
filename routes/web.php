@@ -38,10 +38,6 @@ Route::get('/about-us', function () {
     return view('about-us');
 });
 
-Route::get('/edit-order', function () {
-    return view('edit-order');
-});
-
 Route::resource('/order', \App\Http\Controllers\OrdersController::class);
 Route::get('/search/{search_data}', [\App\Http\Controllers\ApiController::class, 'search']);
 
