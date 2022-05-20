@@ -75,8 +75,8 @@ function getSubCatName($subCatId){
             @foreach($orders as $order)
                 <div
                     class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0">
-                    <div class="row align-items-center">
-                        <div class="col-md-7 mb-3 mb-sm-0">
+                    <div class="row">
+                        <div class="col-md-6 mb-3 mb-sm-0">
                             <h5>
                                 <a href="{{env("APP_URL")."/order/".$order->id}}"
                                    class="text-primary">{{$order->name}}</a>
@@ -88,9 +88,17 @@ function getSubCatName($subCatId){
                         </div>
 
 
-                        <div class="col-md-5 op-7">
+                        <div class="col-md-6 op-7">
                             <div class="row text-center op-7">
-                                <div class="col px-2"><span class="d-block text-sm">{{$status[$order->status]}}</span>
+                                <div class="col-7">
+                                    <label>Статус</label>
+                                    <select data-id="{{$order->id}}" name="status" class="form-control" id="status" required>
+                                        <option value="" selected disabled hidden>{{$status[$order->status]}}</option>
+                                        <option value="0">Ждёт выполнения</option>
+                                        <option value="1">В процессе</option>
+                                        <option value="2">Выполнен</option>
+                                        <option value="3">Просрочен</option>
+                                    </select>
                                 </div>
                                 <!--                            <div class="col px-2"><i class="ion-ios-chatboxes-outline icon-1x"></i> <span
                                                                     class="d-block text-sm">Ответы</span></div>-->
