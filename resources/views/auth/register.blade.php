@@ -4,36 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="{{env("APP_URL")}}/assets/img/favicon.png">
-    <title>Регистрация специалиста</title>
+    <title>Регистрация </title>
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/bootstrap.min.css">
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/register.css">
 </head>
 <body class="text-center footer-back-reg">
-    <form action="" class="form-signin" method="post">
+    <form action="{{ route('register') }}" class="form-signin" method="POST">
+        @csrf
       <img class="mb-4" src="https://img.icons8.com/plasticine/100/000000/barcode.png" alt="" width="100" height="100">
       <h1 class="h3 mb-3 font-weight-normal">Регистрация</h1>
 
+        <div class="form-group">
+            <input type="text" name="name" placeholder="Введите имя" class="form-control " value="" autocomplete="off">
+            <span class="invalid-feedback"></span>
+        </div>
       <div class="form-group">
-        <input type="text" name="name" placeholder="Введите email" class="form-control " value="" autocomplete="off">
+        <input type="text" name="email" placeholder="Введите email" class="form-control " value="" autocomplete="off">
         <span class="invalid-feedback"></span>
+          @error('email')
+          <span class="invalid-feedback" role="alert"><strong>Неправильный email</strong></span>
+          @enderror
       </div>
       <div class="form-group">
         <input type="password" name="password" placeholder="Введите пароль" class="form-control " value="" autocomplete="off">
         <span class="invalid-feedback"></span>
       </div>
+        @error('password')
+        <span class="invalid-feedback" role="alert"><strong>>Неправильный пароль</strong></span>
+        @enderror
       <div class="form-group">
         <input type="password" name="confirm_password" placeholder="Подтвердите введенный пароль" class="form-control " value="" autocomplete="off">
         <span class="invalid-feedback"></span>
       </div>
-
         <div style="text-align: left;" class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+            <input class="form-check-input" type="radio" name="role" id="flexRadioDefault1" value="client" checked>
             <label class="form-check-label" for="flexRadioDefault1">
                 Заказчик
             </label>
         </div>
         <div style="text-align: left;" class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+            <input class="form-check-input" type="radio" name="role" id="flexRadioDefault2" value="staff">
             <label class="form-check-label" for="flexRadioDefault2">
                 Исполнитель
             </label>
