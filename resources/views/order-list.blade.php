@@ -1,10 +1,25 @@
 <?php
-$status = [
+use Illuminate\Support\Facades\DB;$status = [
     0 => "Ждёт выполнения",
     1 =>"В процессе",
     2 =>"Выполнен",
     3 =>"Просрочен"
 ];
+
+
+function getCatName($subCatId){
+    $id = DB::table("subсategories")
+        ->select("category_id")
+        ->where("id","=",$subCatId)->get()->first()->category_id;
+    return DB::table("сategories")->select("name")->where("id","=",$id)->get()->first()->name;
+}
+
+function getSubCatName($subCatId){
+    return DB::table("subсategories")
+        ->select("name")
+        ->where("id","=",$subCatId)->get()->first()->name;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">

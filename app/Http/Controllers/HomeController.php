@@ -73,7 +73,6 @@ class HomeController extends Controller
         }
 
 
-
         $categories    = $this->getTableToArray("сategories", ["id", "name"]);
         $subCategories = $this->getTableToArray("subсategories", ["id", "name", "category_id"]);
 
