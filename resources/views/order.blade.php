@@ -1,3 +1,7 @@
+<?php
+use App\Models\User;
+$email = User::find($order['user_id'])->email;
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -22,7 +26,7 @@
     <div class="text-center">
         <img class="d-block mx-auto mb-4" src="{{env("APP_URL")}}/assets/img/9551554301579156626-128.png" alt="" width="100" height="100">
         <h2>{{$order["name"]}}</h2>
-        <h6>Создал пользователь <a href="{{env("APP_URL")."/users/".$user["id"]}}"> {{$user["name"]}}</a></h6>
+        <h6>Создал пользователь {{$user["name"]}} ({{$email}})</h6>
     </div>
     <div class="row">
         <div class="col align-self-center">
