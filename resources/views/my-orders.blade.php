@@ -63,7 +63,7 @@
                                class="text-primary">{{$order->name}}</a>
                         </h5>
                         <p class="text-sm">{{$order->description}}<span class="op-6"></span></p>
-                        <div class="text-sm op-5"><a class="text-black mr-2" href="#">#Темы заказов для обсуждения</a>
+                        <div class="text-sm op-5"><a class="text-black mr-2" href="#">#Категория</a>
                             <span style="color: #d9232d" data-id="{{$order->id}}" class="delete">Удалить</span>
                         </div>
                     </div>
