@@ -296,4 +296,24 @@ class HomeController extends Controller
         return view("edit-order", ["c" => $categoriesArray, "order" => $order]);
     }
 
+    public function editOrderStatusAction(Request $request){
+
+        $user = User::find(Auth::user()->id);
+
+        $orderId = $request->post("order_id");
+        $statusValue = $request->post("status");
+
+        $order = Orders::find($orderId);
+        $order->status = $statusValue;
+
+        if ($order->user_id != $user->id) {
+            return response("Не заебись, не обновил статус(", 405);
+        }
+
+        $order->save();
+
+        return response("Збс, обновил", 200);
+    }
+
+
 }
