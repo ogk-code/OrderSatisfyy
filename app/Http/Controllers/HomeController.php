@@ -229,14 +229,14 @@ class HomeController extends Controller
         $user = User::find(Auth::user()->id);
 
         if (!$id) {
-            return redirect("/");
+            return redirect("/zahupa");
         }
 
         $order = Orders::find($id);
 
         // если каким то хуем так вышло, что заказ пытается удалить не его владелец
         if ($order->user_id != $user->id) {
-            return redirect("/");
+            return redirect("/hui");
         }
 
         $order->name            = $request->title;
@@ -245,7 +245,7 @@ class HomeController extends Controller
         $order->adrss           = $request->adrss;
         $order->budget          = $request->price;
         $order->time            = $request->date . " " . $request->time . ":00";
-        $order->edit            = true;
+        $order->edited            = true;
 
         $order->save();
         return redirect("/order-list");
