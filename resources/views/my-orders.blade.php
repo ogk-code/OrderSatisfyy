@@ -75,7 +75,7 @@
                             <div class="col px-2"><i class="ion-ios-chatboxes-outline icon-1x"></i> <span
                                     class="d-block text-sm">Ответы</span></div>
                             <div class="col px-2"><i class="ion-ios-compose-outline icon-1x"></i> <span
-                                    class="d-block text-sm"><a href="">Изменить</a></span></div>
+                                    class="d-block text-sm"><a href="/edit-order/{{$order->id}}">Изменить</a></span></div>
                         </div>
                     </div>
                 </div>
