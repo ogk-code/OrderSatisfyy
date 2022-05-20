@@ -1,3 +1,8 @@
+<?php
+$dateTime = explode(" ", $order->time);
+$date = $dateTime[0];
+$time = $dateTime[1];
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -55,7 +60,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><img src="{{env("APP_URL")}}/assets/img/12496875031638280183-128.png" width="30" height="30"></span>
                         </div>
-                        <input name="title" type="text" class="form-control" placeholder="Например: Помыть посуду" required autocomplete="off">
+                        <input value="{{$order->name}}" name="title" type="text" class="form-control" placeholder="Например: Помыть посуду" required autocomplete="off">
                         <div class="invalid-feedback" style="width: 100%;">
                             Your username is required.
                         </div>
@@ -65,7 +70,7 @@
                 <div class="mb-3">
                     <label>Детальное описание заказа</label>
                     <div class="md-form mb-4 pink-textarea active-red-textarea">
-                        <textarea name="description" id="form18" class="md-textarea form-control" rows="3" required></textarea>
+                        <textarea name="description" id="form18" class="md-textarea form-control" rows="3" required>{{$order->description}}</textarea>
                     </div>
                     <div class="invalid-feedback">
                         Please enter a valid email address for shipping updates.
@@ -75,18 +80,18 @@
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         <label for="zip">Адресс</label>
-                        <input name="adrss" type="text" class="form-control" id="zip" placeholder=" ул.Багрицкого 12Б" autocomplete="off" required>
+                        <input value="{{$order->adrss}}" name="adrss" type="text" class="form-control" id="zip" placeholder=" ул.Багрицкого 12Б" autocomplete="off" required>
                         <div class="invalid-feedback">
                             Zip code required.
                         </div>
                     </div>
                     <div class="form-group col-md-4 mb-3">
                         <label for="date">Конечный день выполнения</label>
-                        <input name="date" type="date" class="form-control" required>
+                        <input value="{{$date}}" name="date" type="date" class="form-control" required>
                     </div>
                     <div class="form-group col-md-4 mb-3">
                         <label>Конечное время выполнения</label>
-                        <input type="time" name="time" class="form-control mask-time" placeholder="12:00" required>
+                        <input value="{{$time}}" type="time" name="time" class="form-control mask-time" placeholder="12:00" required>
                     </div>
                 </div>
 
@@ -95,7 +100,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Примерный бюджет</span>
                         </div>
-                        <input name="price" type="number" class="form-control" autocomplete="off" aria-label="Amount (to the nearest dollar)" required>
+                        <input value="{{$order->budget}}" name="price" type="number" class="form-control" autocomplete="off" aria-label="Amount (to the nearest dollar)" required>
                         <div class="input-group-append">
                             <span class="input-group-text">грн</span>
                         </div>
