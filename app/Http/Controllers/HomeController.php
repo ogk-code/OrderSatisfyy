@@ -64,11 +64,11 @@ class HomeController extends Controller
         $filters["c"]  = $filters["c"] ?? null;
         $filters["sc"] = $filters["sc"] ?? null;
 
-        if($filters["sc"]=="all"){
+        if ($filters["sc"] == "all") {
             $filters["sc"] = null;
         }
 
-        if ($filters["c"]=="all"){
+        if ($filters["c"] == "all") {
             $filters["c"] = null;
         }
 
@@ -148,13 +148,27 @@ class HomeController extends Controller
         return $categories;
     }
 
-    function MyOrdersAction()
+    function MyOrdersAction(Request $request)
     {
         $user = User::find(Auth::user()->id);
         if (!$user) {
             redirect("/");
         }
-        $orders = $this->getOrders($user);
+
+        $filters = $request->all();
+
+        $filters["c"]  = $filters["c"] ?? null;
+        $filters["sc"] = $filters["sc"] ?? null;
+
+        if ($filters["sc"] == "all") {
+            $filters["sc"] = null;
+        }
+
+        if ($filters["c"] == "all") {
+            $filters["c"] = null;
+        }
+
+        $orders = $this->getOrders($user, $filters["c"], $filters["sc"]);
 
         $categories    = $this->getTableToArray("сategories", ["id", "name"]);
         $subCategories = $this->getTableToArray("subсategories", ["id", "name", "category_id"]);
@@ -213,14 +227,14 @@ class HomeController extends Controller
         $id   = $request->post("id");
         $user = User::find(Auth::user()->id);
 
-        if (!$id){
+        if (!$id) {
             return redirect("/");
         }
 
         $order = Orders::find($id);
 
         // если каким то хуем так вышло, что заказ пытается удалить не его владелец
-        if($order->user_id!=$user->id){
+        if ($order->user_id != $user->id) {
             return redirect("/");
         }
 
@@ -241,30 +255,31 @@ class HomeController extends Controller
         $id   = $request->post("id");
         $user = User::find(Auth::user()->id);
 
-        if (!$id){
-            return response("Не заебись, не удалил(",403);
+        if (!$id) {
+            return response("Не заебись, не удалил(", 403);
         }
 
         $order = Orders::find($id);
 
         // если каким то хуем так вышло, что заказ пытается удалить не его владелец
-        if($order->user_id!=$user->id){
-            return response("Не заебись, не удалил(",403);
+        if ($order->user_id != $user->id) {
+            return response("Не заебись, не удалил(", 403);
         }
 
         Orders::destroy($id);
-        return response("Заебись удалил",200);
+        return response("Заебись удалил", 200);
     }
 
-    public function editOrderAction(Request $request, $id){
+    public function editOrderAction(Request $request, $id)
+    {
         $user = User::find(Auth::user()->id);
 
         $order = Orders::find($id);
 
-        if (!$id){
+        if (!$id) {
             return redirect("/");
         }
-        if($order->user_id!=$user->id){
+        if ($order->user_id != $user->id) {
             return redirect("/");
         }
 
@@ -277,7 +292,7 @@ class HomeController extends Controller
 
         $categoriesArray = $this->generateCategoriesArray($categories, $subCategories);
 
-        return view("edit-order", ["c" => $categoriesArray, "order"=>$order]);
+        return view("edit-order", ["c" => $categoriesArray, "order" => $order]);
     }
 
 }
