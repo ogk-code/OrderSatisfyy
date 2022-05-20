@@ -30,11 +30,11 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label>Категория заказа</label>
-                        <div><b onclick="location.href='{{env("APP_URL")."/category/".$cats["category"]["id"]}}'">{{$cats["category"]["name"]}}</b></div>
+                        <div><b>{{$cats["category"]["name"]}}</b></div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Подкатегория заказа</label>
-                        <div><b onclick="location.href='{{env("APP_URL")."/sub_category/".$cats["sub_category"]["id"]}}'">{{$cats["sub_category"]["name"]}}</b></div>
+                        <div><b>{{$cats["sub_category"]["name"]}}</b></div>
 
                     </div>
                 </div>
