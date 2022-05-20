@@ -5,7 +5,7 @@
 
         @role('client')
         <a href="{{env("APP_URL")}}/create-order">
-            <button type="button" class="btn btn-warning item">Создать заказ</button>
+            <button type="button" class="btn btn-danger item">Создать заказ</button>
         </a>
         <a href="{{env("APP_URL")}}/my-orders">
             <button type="button" class="btn btn-danger item">Мои заказы</button>
@@ -14,7 +14,7 @@
 
         @role('staff')
         <a href="{{env("APP_URL")}}/order-list">
-            <button type="button" class="btn btn-warning item">Все заказы</button>
+            <button type="button" class="btn btn-danger item">Все заказы</button>
         </a>
         <form class="item">
             <div class="typeahead__container">
