@@ -81,9 +81,9 @@
 
     <!-- ======= Clients Section ======= -->
     <section id="clients" class="clients section-bg">
-      <div class="container">
+      <div style="padding-bottom: 40px" class="container">
 
-    <div class="row">
+    <div class="row justify-content-center">
 
       <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
         <img src="{{env("APP_URL")}}/assets/img/icons/icons8-home-64.png" class="img-fluid" alt="">
@@ -110,10 +110,10 @@
         <span class="cntr">Бизнес</span>
       </div>
 
-      <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+<!--      <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
         <img src="{{env("APP_URL")}}/assets/img/icons/icons8-health-data-64.png" class="img-fluid" alt="">
         <span class="cntr">Все категории</span>
-      </div>
+      </div>-->
 
     </div>
 
