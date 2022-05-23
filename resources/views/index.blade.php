@@ -15,6 +15,11 @@
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/swiper-bundle.min.css">
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/index.css">
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/header.css">
+    <style>
+        header{
+            margin-bottom: 0;
+        }
+    </style>
 </head>
 <body>
 @include("parts.header")

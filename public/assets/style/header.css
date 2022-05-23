@@ -5,6 +5,7 @@ header{
     padding: 15px 100px;
     line-height: 0;
     border-bottom: 1px solid #ced4da;
+    margin-bottom: 10px;
 }
 
 header .logo-container{
