@@ -44,6 +44,9 @@ Route::get('/user-profile', function () {
 Route::get('/edit-profile', function () {
     return view('edit-profile');
 });
+Route::get('/status-change', function () {
+    return view('/email/status-change');
+});
 
 Route::resource('/order', \App\Http\Controllers\OrdersController::class);
 Route::get('/search/{search_data}', [\App\Http\Controllers\ApiController::class, 'search']);
