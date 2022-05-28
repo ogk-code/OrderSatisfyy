@@ -105,7 +105,7 @@ function getSubCatName($subCatId)
                     <div class="row text-center op-7">
                         <div class="col-7">
                             <label>Статус</label>
-                            <select data-id="{{$order->id}}" name="status" class="form-control" id="status" required>
+                            <select data-id="{{$order->id}}" name="status" class="form-control status" required>
                                 <option value="" selected disabled hidden>{{$status[$order->status]}}</option>
                                 <option value="0">Ждёт выполнения</option>
                                 <option value="1">В процессе</option>
