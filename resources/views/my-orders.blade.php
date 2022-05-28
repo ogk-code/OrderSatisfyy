@@ -54,31 +54,32 @@ function getSubCatName($subCatId)
 @include("parts.header")
 <div class="container">
     <div class="row">
-        <div class="col-md-4 mb-3">
+        <div class="col-md-3 mb-3">
             <label>Категория заказа</label>
             <select name="category" class="form-control categories" id="category" required>
             </select>
-            <div class="invalid-feedback">
-                Выберите нужную категорию заказа.
-            </div>
         </div>
-        <div class="col-md-4 mb-3">
+        <div class="col-md-3 mb-3">
             <label>Подкатегория заказа</label>
             <select name="subcategory" class="form-control categories" id="subcategory" required>
             </select>
-            <div class="invalid-feedback">
-                Выберите нужную подкатегорию заказа.
-            </div>
         </div>
-        <div class="col-md-4 mb-3">
+        <div class="col-md-3 mb-3">
+            <label>Статус заказа</label>
+            <select name="status-filter" class="form-control" id="status-filter" required>
+                <option value="all">Все</option>
+                <option value="0">Ждёт выполнения</option>
+                <option value="1">В процессе</option>
+                <option value="2">Выполнен</option>
+                <option value="3">Просрочен</option>
+            </select>
+        </div>
+        <div class="col-md-3 mb-3">
             <label>Сортировка</label>
             <select name="sort" class="form-control" id="sort" required>
                 <option value="date">По дате</option>
                 <option value="status">По статусу</option>
             </select>
-            <div class="invalid-feedback">
-                Выберите нужную подкатегорию заказа.
-            </div>
         </div>
     </div>
 
