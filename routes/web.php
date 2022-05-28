@@ -38,6 +38,12 @@ Route::get('/contacts', function () {
 Route::get('/about-us', function () {
     return view('about-us');
 });
+Route::get('/user-profile', function () {
+    return view('user-profile');
+});
+Route::get('/edit-profile', function () {
+    return view('edit-profile');
+});
 
 Route::resource('/order', \App\Http\Controllers\OrdersController::class);
 Route::get('/search/{search_data}', [\App\Http\Controllers\ApiController::class, 'search']);

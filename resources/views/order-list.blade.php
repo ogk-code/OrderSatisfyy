@@ -1,31 +1,34 @@
 <?php
 use Illuminate\Support\Facades\DB;$status = [
     0 => "Ждёт выполнения",
-    1 =>"В процессе",
-    2 =>"Выполнен",
-    3 =>"Просрочен"
+    1 => "В процессе",
+    2 => "Выполнен",
+    3 => "Просрочен"
 ];
 
-function getCatId($subCatId){
+function getCatId($subCatId)
+{
     return DB::table("subсategories")
         ->select("category_id")
-        ->where("id","=",$subCatId)->get()->first()->category_id;
+        ->where("id", "=", $subCatId)->get()->first()->category_id;
 }
 
-function getCatName($subCatId){
+function getCatName($subCatId)
+{
     $id = DB::table("subсategories")
         ->select("category_id")
-        ->where("id","=",$subCatId)->get()->first()->category_id;
-    return DB::table("сategories")->select("name")->where("id","=",$id)->get()->first()->name;
+        ->where("id", "=", $subCatId)->get()->first()->category_id;
+    return DB::table("сategories")->select("name")->where("id", "=", $id)->get()->first()->name;
 }
 
-function getSubCatName($subCatId){
+function getSubCatName($subCatId)
+{
     return DB::table("subсategories")
         ->select("name")
-        ->where("id","=",$subCatId)->get()->first()->name;
+        ->where("id", "=", $subCatId)->get()->first()->name;
 }
 ?>
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -51,69 +54,75 @@ function getSubCatName($subCatId){
 @include("parts.header")
 <div class="container">
     <div class="row">
-        <!-- Main content -->
-        <div class="col-lg-9 mb-3">
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label>Категория заказа</label>
-                    <select name="category" class="form-control categories" id="category" required>
-                    </select>
-                    <div class="invalid-feedback">
-                        Выберите нужную категорию заказа.
+        <div class="col-md-4 mb-3">
+            <label>Категория заказа</label>
+            <select name="category" class="form-control categories" id="category" required>
+            </select>
+            <div class="invalid-feedback">
+                Выберите нужную категорию заказа.
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label>Подкатегория заказа</label>
+            <select name="subcategory" class="form-control categories" id="subcategory" required>
+            </select>
+            <div class="invalid-feedback">
+                Выберите нужную подкатегорию заказа.
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label>Сортировка</label>
+            <select name="sort" class="form-control" id="sort" required>
+                <option value="date">По дате</option>
+                <option value="status">По статусу</option>
+            </select>
+            <div class="invalid-feedback">
+                Выберите нужную подкатегорию заказа.
+            </div>
+        </div>
+    </div>
+
+    <!--End of post 1 -->
+    @foreach($orders as $order)
+        <div
+            class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0">
+            <div class="row align-items-center">
+                <div class="col-md-7 mb-3 mb-sm-0">
+                    <h5>
+                        <a href="{{env("APP_URL")."/order/".$order->id}}" class="text-primary">{{$order->name}}</a>
+                    </h5>
+                    <p class="text-sm">{{$order->description}}<span class="op-6"></span></p>
+                    <div class="text-sm op-5">
+                        <a class="text-black mr-2"
+                           href="/order-list?c={{getCatId($order->sub_category_id)}}&sc={{$order->sub_category_id}}">#{{getCatName($order->sub_category_id)}}
+                            #{{getSubCatName($order->sub_category_id)}}</a>
                     </div>
                 </div>
-                <div class="col-md-6 mb-3">
-                    <label>Подкатегория заказа</label>
-                    <select name="subcategory" class="form-control categories" id="subcategory" required>
-                    </select>
-                    <div class="invalid-feedback">
-                        Выберите нужную подкатегорию заказа.
+
+
+                <div class="col-md-5 op-7">
+                    <div class="row text-center op-7">
+                        <div class="col px-2"><span class="d-block text-sm">{{$status[$order->status]}}</span></div>
+                        <div class="col px-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                <path fill-rule="evenodd"
+                                      d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                            </svg>
+                            <span class="d-block text-sm">{{$order->user}}</span></div>
+                        <!--                            <div class="col px-2"><i class="ion-ios-chatboxes-outline icon-1x"></i> <span
+                                                            class="d-block text-sm">Ответы</span></div>-->
                     </div>
                 </div>
             </div>
-
-            <!--End of post 1 -->
-            @foreach($orders as $order)
-            <div
-                class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0">
-                <div class="row align-items-center">
-                    <div class="col-md-7 mb-3 mb-sm-0">
-                        <h5>
-                            <a href="{{env("APP_URL")."/order/".$order->id}}" class="text-primary">{{$order->name}}</a>
-                        </h5>
-                        <p class="text-sm">{{$order->description}}<span class="op-6"></span></p>
-                        <div class="text-sm op-5">
-                            <a class="text-black mr-2" href="/order-list?c={{getCatId($order->sub_category_id)}}&sc={{$order->sub_category_id}}">#{{getCatName($order->sub_category_id)}}#{{getSubCatName($order->sub_category_id)}}</a>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-5 op-7">
-                        <div class="row text-center op-7">
-                            <div class="col px-2"><span class="d-block text-sm">{{$status[$order->status]}}</span></div>
-                            <div class="col px-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                                </svg>
-                                <span class="d-block text-sm">{{$order->user}}</span></div>
-<!--                            <div class="col px-2"><i class="ion-ios-chatboxes-outline icon-1x"></i> <span
-                                    class="d-block text-sm">Ответы</span></div>-->
-                        </div>
-                    </div>
-                </div>
 
 
             <hr style="color:red">
 
-            </div>
-        @endforeach
-            <!-- /End of post 1 -->
-
         </div>
-
-
-    </div>
+    @endforeach
+    <!-- /End of post 1 -->
 </div>
 @include("parts.footer")
 <script src="{{env("APP_URL")}}/assets/js/categories-get.js"></script>

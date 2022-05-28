@@ -244,11 +244,11 @@ class HomeController extends Controller
         $order->description     = $request->description;
         $order->adrss           = $request->adrss;
         $order->budget          = $request->price;
-        $order->time            = $request->date . " " . $request->time . ":00";
+        $order->time            = $request->date . " " . $request->time;
         $order->edited            = true;
 
         $order->save();
-        return redirect("/order-list");
+        return redirect("/my-orders");
     }
 
     public function deleteOrder(Request $request)

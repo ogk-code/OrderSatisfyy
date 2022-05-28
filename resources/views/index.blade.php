@@ -15,6 +15,11 @@
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/swiper-bundle.min.css">
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/index.css">
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/header.css">
+    <style>
+        header{
+            margin-bottom: 0;
+        }
+    </style>
 </head>
 <body>
 @include("parts.header")
@@ -76,9 +81,9 @@
 
     <!-- ======= Clients Section ======= -->
     <section id="clients" class="clients section-bg">
-      <div class="container">
+      <div style="padding-bottom: 40px" class="container">
 
-    <div class="row">
+    <div class="row justify-content-center">
 
       <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
         <img src="{{env("APP_URL")}}/assets/img/icons/icons8-home-64.png" class="img-fluid" alt="">
@@ -105,10 +110,10 @@
         <span class="cntr">Бизнес</span>
       </div>
 
-      <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+<!--      <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
         <img src="{{env("APP_URL")}}/assets/img/icons/icons8-health-data-64.png" class="img-fluid" alt="">
         <span class="cntr">Все категории</span>
-      </div>
+      </div>-->
 
     </div>
 
@@ -119,10 +124,10 @@
   <hr>
     <div class="row justify-content-center">
     @foreach($categories as $category)
-        <div class="col-3"><h2 class="heading">{{$category["name"]}}</h2>
+        <div class="col-3"><h2 class="heading"><a href="/order-list?c={{$category["id"]}}&sc=all" class="withoutRed">{{$category["name"]}}</a></h2>
             <ul>
                 @foreach($category["subcats"] as $subcategories)
-                <li><i class="ri-check-double-line"></i> <a href="#" class="withoutRed">{{$subcategories["name"]}}</a></li>
+                <li><i class="ri-check-double-line"></i> <a href="/order-list?c={{$category["id"]}}&sc={{$subcategories["id"]}}" class="withoutRed">{{$subcategories["name"]}}</a></li>
                 @endforeach
             </ul>
         </div>

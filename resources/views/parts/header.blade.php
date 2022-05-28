@@ -5,7 +5,7 @@
 
         @role('client')
         <a href="{{env("APP_URL")}}/create-order">
-            <button type="button" class="btn btn-warning item">Создать заказ</button>
+            <button type="button" class="btn btn-danger item">Создать заказ</button>
         </a>
         <a href="{{env("APP_URL")}}/my-orders">
             <button type="button" class="btn btn-danger item">Мои заказы</button>
@@ -14,7 +14,7 @@
 
         @role('staff')
         <a href="{{env("APP_URL")}}/order-list">
-            <button type="button" class="btn btn-warning item">Все заказы</button>
+            <button type="button" class="btn btn-danger item">Все заказы</button>
         </a>
         <form class="item">
             <div class="typeahead__container">
@@ -39,9 +39,11 @@
                 <button type="button" class="btn btn-danger item">Регистрация</button>
             </a>
         @else
-            <span>{{Auth::user()->name}}</span>
+            <a href="{{env("APP_URL")}}/user-profile">
+                <button type="button" class="btn btn-light">{{Auth::user()->name}}</button>
+            </a>
             <a href="{{env("APP_URL")}}/logout">
-                <button type="button" class="btn btn-light item">Выйти</button>
+                <button type="button" class="btn btn-secondary item">Выйти</button>
             </a>
         @endif
     </div>
