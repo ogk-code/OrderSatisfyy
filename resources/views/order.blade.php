@@ -46,7 +46,7 @@ function getExecutorName($executorId){
         <h2>{{$order["name"]}} ({{$status[$order["status"]]}})</h2>
         <h6>Создал пользователь {{$user["name"]}} ({{$email}})</h6>
         @if($order["edited"])
-        <span id="changed">Изменен</span>
+        <span id="changed">Заказ был изменен</span>
         @endif
     </div>
     <div class="row">
@@ -103,10 +103,11 @@ function getExecutorName($executorId){
                 <a href="{{env("APP_URL")}}/take-order/{{$order["id"]}}">
                     <button style="width: 100%" type="button" class="btn btn-danger">Взять заказ</button>
                 </a>
-            @else
-                {{getExecutorName($order->executor_id)}}
             @endif
             @endrole
+            @if($order["executor_id"])
+                <h4>Заказ в исполнении специалистом <a href="">{{getExecutorName($order->executor_id)}}</a></h4>
+            @endif
         </div>
     </div>
 </div><br>
