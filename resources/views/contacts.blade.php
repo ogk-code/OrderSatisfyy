@@ -59,7 +59,7 @@
 
                 <div class="col-lg-8 mt-5 mt-lg-0">
                     @if(session('sex'))
-                    <h3>Успешно отправлено</h3>
+                        <h3 style="text-align: center;color: #1e7e34">Сообщение успешно отправлено</h3>
                     @endif
                     <form action="{{env("APP_URL")}}/feetback-email" method="POST" name="form">
                       @csrf
