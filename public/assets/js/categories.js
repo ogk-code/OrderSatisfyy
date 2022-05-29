@@ -1,19 +1,26 @@
-function fillingCategories(obj) {
+function fillingCategories(obj, idSelectedCategories=1, idSelectedSubCategories=1) {
     let json = JSON.parse(obj);
 
-    let category = '';
+    let category = '<option value="all">Все</option>';
     json.forEach(el => {
         const {name, id} = el;
         category += `<option value="${id}">${name}</option>`;
     });
     $("#category").html(category);
+    $(`#category option[value=${idSelectedCategories}]`).prop('selected', true);
 
-    let firstSubcategory = '';
-    json[0].subcats.forEach(el => {
-        const {name, id} = el;
-        firstSubcategory += `<option value="${id}">${name}</option>`;
-    });
-    $("#subcategory").html(firstSubcategory);
+    let subcategory = '<option value="all">Все</option>';
+    const indexCategory = json.findIndex(el => el.id === Number(idSelectedCategories));
+    if (indexCategory !== -1) {
+        json[indexCategory].subcats.forEach(el => {
+            const {name, id} = el;
+            subcategory += `<option value="${id}">${name}</option>`;
+        });
+    }
+    $("#subcategory").html(subcategory);
+
+    if (idSelectedSubCategories) $(`#subcategory option[value=${idSelectedSubCategories}]`).prop('selected', true);
+    else $('#subcategory option:first').prop('selected', true);
 
     $('#category').on('change', function () {
         let subcategory = '';

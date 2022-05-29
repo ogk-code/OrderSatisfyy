@@ -1,7 +1,29 @@
 <?php
-$dateTime = explode(" ", $order->time);
+use Illuminate\Support\Facades\DB;$dateTime = explode(" ", $order->time);
 $date = $dateTime[0];
 $time = $dateTime[1];
+
+function getCatId($subCatId)
+{
+    return DB::table("subсategories")
+        ->select("category_id")
+        ->where("id", "=", $subCatId)->get()->first()->category_id;
+}
+
+function getCatName($subCatId)
+{
+    $id = DB::table("subсategories")
+        ->select("category_id")
+        ->where("id", "=", $subCatId)->get()->first()->category_id;
+    return DB::table("сategories")->select("name")->where("id", "=", $id)->get()->first()->name;
+}
+
+function getSubCatName($subCatId)
+{
+    return DB::table("subсategories")
+        ->select("name")
+        ->where("id", "=", $subCatId)->get()->first()->name;
+}
 ?>
     <!DOCTYPE html>
 <html lang="ru">
@@ -48,6 +70,7 @@ $time = $dateTime[1];
                             Выберите нужную категорию заказа.
                         </div>
                     </div>
+
                     <input type="hidden" name="id" value="{{$order->id}}">
                     <div class="col-md-6 mb-3">
                         <label>Подкатегория заказа</label>
@@ -132,6 +155,6 @@ $time = $dateTime[1];
         class="bi bi-arrow-up-short"></i></a>
 @include("parts.footer")
 <script src="{{env("APP_URL")}}/assets/js/categories.js"></script>
-<script>fillingCategories('<?php echo json_encode($c); ?>');</script>
+<script>fillingCategories('<?php echo json_encode($c); ?>',{{getCatId($order->sub_category_id)}},{{$order->sub_category_id}});</script>
 </body>
 </html>
