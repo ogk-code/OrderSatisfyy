@@ -30,6 +30,6 @@ class FeetBack extends Mailable
      */
     public function build()
     {
-        return $this->view('email.feedback',["data"=>$this->data]);
+        return $this->view('email.feedback',$this->data);
     }
 }

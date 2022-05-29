@@ -27,6 +27,18 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+    public function FeetBackEmailAction(Request $request){
+        $emailTo = env("ADMIN_EMAIL");
+        Mail::to($emailTo)->send(new \App\Mail\FeetBack(
+            [
+                "email" => $request->post("email"),
+                "name" => $request->post("name"),
+                "coment"=> $request->post("coment"),
+            ]
+        ));
+        return redirect()->back()->with("sex", "Отправленно");
+    }
+
     public function ConfirmAction(Request $request)
     {
         $data = $request->all();

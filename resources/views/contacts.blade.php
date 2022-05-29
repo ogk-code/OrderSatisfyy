@@ -58,8 +58,11 @@
                 </div>
 
                 <div class="col-lg-8 mt-5 mt-lg-0">
-
-                    <form action="sendEmail.php" method="POST" name="form">
+                    @if(session('sex'))
+                    <h3>Успешно отправлено</h3>
+                    @endif
+                    <form action="{{env("APP_URL")}}/feetback-email" method="POST" name="form">
+                      @csrf
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <input type="text" name="name" class="form-control" id="name" placeholder="Ваше Имя" required>
@@ -69,9 +72,9 @@
                             </div>
                         </div>
                         <div class="form-group mt-3">
-                            <textarea class="form-control" name="text" rows="5" placeholder="Комментарии..." required></textarea>
+                            <textarea class="form-control" name="coment" rows="5" placeholder="Комментарии..." required></textarea>
                         </div>
-                        <div class="text-center"><input style="margin-top: 1rem; font-family: Open Sans, sans-serif; font-size: 16px;" class="inputEmail" type="submit" value="Отправить сообщение" name="sab"></div>
+                        <div class="text-center"><input style="margin-top: 1rem; font-family: Open Sans, sans-serif; font-size: 16px;" class="inputEmail" type="submit" value="Отправить сообщение" ></div>
                     </form>
                 </div>
             </div>

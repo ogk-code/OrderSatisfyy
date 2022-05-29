@@ -132,9 +132,9 @@
                                         <p style="font-family: sans-serif; font-size: 18px; font-weight: bold; margin: 0; margin-bottom: 15px;">
                                             ORDER/SATISFY</p>
                                         <p style="font-family: sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 15px;">
-                                            Новое сообщение от {name}({email})!</p>
+                                            Новое сообщение от {{$name}} ({{$email}})!</p>
                                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">
-                                            {text}</p>
+                                            {{$coment}}</p>
                                     </td>
                                 </tr>
                             </table>
