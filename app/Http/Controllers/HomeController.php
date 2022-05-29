@@ -27,15 +27,13 @@ class HomeController extends Controller
     }
 
 
-    public function EmailTest()
+    private function statusChangeEmailSend($toEmail, $order)
     {
-        $toEmail = "dnk.garden@gmail.com";
         Mail::to($toEmail)->send(new \App\Mail\StatusMail(
             [
-                "data" => "лол, иди нахуй",
+                "order" => $order,
             ]
         ));
-        return "хахахах, ты лох! ";
     }
 
     function IndexAction()
@@ -325,6 +323,8 @@ class HomeController extends Controller
         }
 
         $order->save();
+
+        $this->statusChangeEmailSend($user->email, $order);
 
         return response("Збс, обновил", 200);
     }
