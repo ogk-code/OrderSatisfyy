@@ -48,7 +48,8 @@ class HomeController extends Controller
                 "user" => $user
             ]
         ));
-        return redirect()->back();
+
+        return redirect()->back()->withCookie(cookie('order_'.$order->id, 'taken', 3600));
     }
 
     private function statusChangeEmailSend($toEmail, $order)

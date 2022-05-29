@@ -1,6 +1,9 @@
 <?php
+
 use App\Models\User;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
+
 $email = User::find($order['user_id'])->email;
 $status = [
     0 => "Ждёт выполнения",
@@ -100,13 +103,18 @@ function getExecutorName($executorId){
             <br>
             @role('staff')
             @if(!$order["executor_id"])
+                @if(!Cookie::get("order_".$order["id"]))
                 <a href="{{env("APP_URL")}}/take-order/{{$order["id"]}}">
                     <button style="width: 100%" type="button" class="btn btn-danger">Взять заказ</button>
                 </a>
+                @else
+                    <h4> Ваша кандидатура на расмотренни заказчиком </h4>
+                @endif
             @endif
             @endrole
             @if($order["executor_id"])
-                <h4>Заказ в исполнении специалистом <a href="">{{getExecutorName($order->executor_id)}}</a></h4>
+                <h4>Заказ в исполнении специалистом
+                    <a href="{{env("APP_URL")}}/user-profile/{{$order->executor_id}}">{{getExecutorName($order->executor_id)}}</a></h4>
             @endif
         </div>
     </div>

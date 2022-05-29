@@ -132,7 +132,7 @@
                                             За ваш заказ
                                             <a href="{{env("APP_URL")}}/order/{{$order->id}}">{{$order->name}}</a>
                                             , хочет взяться специалист
-                                            <a href="{{env("APP_URL")}}/user-profile{{$user->id}}">{{$user->name}}</a>.</p>
+                                            <a href="{{env("APP_URL")}}/user-profile/{{$user->id}}">{{$user->name}}</a>.</p>
                                         <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; box-sizing: border-box; width: 100%;" width="100%">
                                             <tbody>
                                             <tr>
