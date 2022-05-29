@@ -19,7 +19,7 @@
 <body>
 @include("parts.header")
 <div class="container">
-  <h1 style="margin: 20px">Вы успешно приняли специалиста на выполнение заказа!</h1>
+  <h1 style="margin: 20px;color: #1e7e34;">Вы успешно приняли специалиста на выполнение заказа!</h1>
 </div>
 @include("parts.footer")
 </body>

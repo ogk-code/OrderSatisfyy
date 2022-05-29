@@ -19,7 +19,7 @@
 <body>
 @include("parts.header")
 <div class="container">
-    <h1 style="margin: 20px">Специалисту отказано!</h1>
+    <h1 style="margin: 20px;color: #dc3545;">Специалисту отказано!</h1>
 </div>
 @include("parts.footer")
 </body>
