@@ -1,11 +1,3 @@
-<?php
-$status = [
-    0 => "Ждёт выполнения",
-    1 => "В процессе",
-    2 => "Выполнен",
-    3 => "Просрочен"
-];
-?>
 <!doctype html>
 <html>
 <head>
@@ -140,11 +132,10 @@ $status = [
                                         <p style="font-family: sans-serif; font-size: 18px; font-weight: bold; margin: 0; margin-bottom: 15px;">
                                             ORDER/SATISFY</p>
                                         <p style="font-family: sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 15px;">
-                                            Вам пришла повестка</p>
+                                            {{$user->name}}, Вашу кандидатуру приняли!</p>
                                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">
-                                          {{$user->name}}, вам повестка)</p>
+                                            Заказчик принял вашу кандидатуру на заказ <a href="{{env("APP_URL")}}/order/{{$order->id}}">{{$order->name}}</a>.</p>
                                     </td>
-                                    <img width="100" height="100" src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fnovayagazeta.ru%2Fnews%2F2019%2F08%2F09%2F154125-zaderzhannaya-na-mitinge-zhurnalistka-reuters-poluchila-povestku-v-voenkomat&psig=AOvVaw0EhvkGKUJBAPyaDcjci-Jk&ust=1653944507469000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCJCauMnNhfgCFQAAAAAdAAAAABAp" alt="">
                                 </tr>
                             </table>
                         </td>
