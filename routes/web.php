@@ -30,6 +30,11 @@ Route::post('/update-order', [\App\Http\Controllers\HomeController::class, 'upda
 Route::post('/edit-order-status', [\App\Http\Controllers\HomeController::class, 'editOrderStatusAction']);
 Route::get('/edit-order/{id}', [\App\Http\Controllers\HomeController::class, 'editOrderAction']);
 
+Route::get('/confirm', [\App\Http\Controllers\HomeController::class, 'ConfirmAction']);
+Route::get('/reject', [\App\Http\Controllers\HomeController::class, 'RejectmAction']);
+
+
+
 Route::get('/FAQ', function () {
     return view('FAQ');
 });

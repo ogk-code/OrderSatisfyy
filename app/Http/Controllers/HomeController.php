@@ -27,6 +27,20 @@ class HomeController extends Controller
     }
 
 
+    public function TakeOrderAction($id){
+
+        $order = Orders::find($id);
+
+        if(!$order){
+            abort(404);
+        }
+
+
+
+        $user = User::find(Auth::user()->id);
+
+    }
+
     private function statusChangeEmailSend($toEmail, $order)
     {
         Mail::to($toEmail)->send(new \App\Mail\StatusMail(
