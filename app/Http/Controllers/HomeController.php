@@ -34,6 +34,14 @@ class HomeController extends Controller
                 "order" => $order,
             ]
         ));
+        if($order->executor_id){
+            $executor = User::find($order->executor_id);
+            Mail::to($executor->email)->send(new \App\Mail\StatusMail(
+                [
+                    "order" => $order,
+                ]
+            ));
+        }
     }
 
     function IndexAction()
