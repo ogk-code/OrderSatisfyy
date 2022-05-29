@@ -1,3 +1,11 @@
+<?php
+$status = [
+    0 => "Ждёт выполнения",
+    1 => "В процессе",
+    2 => "Выполнен",
+    3 => "Просрочен"
+];
+?>
 <!doctype html>
 <html>
 <head>
@@ -134,7 +142,7 @@
                                         <p style="font-family: sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 15px;">
                                             Изменение статуса заказа</p>
                                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">
-                                            Статус заказа <a href="{{env("APP_URL")}}/order/1">{Название}</a> был изменен на {статус}!</p>
+                                            Статус заказа <a href="{{env("APP_URL")}}/order/{{$order->id}}">{{$order->name}}</a> был изменен на {{$status[$order->status]}}!</p>
                                     </td>
                                 </tr>
                             </table>
