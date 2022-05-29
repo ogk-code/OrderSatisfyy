@@ -1,11 +1,3 @@
-<?php
-$status = [
-    0 => "Ждёт выполнения",
-    1 => "В процессе",
-    2 => "Выполнен",
-    3 => "Просрочен"
-];
-?>
 <!doctype html>
 <html>
 <head>
@@ -137,7 +129,10 @@ $status = [
                                         <p style="font-family: sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 15px;">
                                             Специалист хочет взять ваш заказ!</p>
                                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">
-                                            За ваш заказ <a href="{{env("APP_URL")}}/order/{{$order->id}}">{{$order->name}}</a>, хочет взяться специалист <a href="">{{name}}</a>.</p>
+                                            За ваш заказ
+                                            <a href="{{env("APP_URL")}}/order/{{$order->id}}">{{$order->name}}</a>
+                                            , хочет взяться специалист
+                                            <a href="{{env("APP_URL")}}/user-profile{{$user->id}}">{{$user->name}}</a>.</p>
                                         <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; box-sizing: border-box; width: 100%;" width="100%">
                                             <tbody>
                                             <tr>
@@ -145,8 +140,10 @@ $status = [
                                                     <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-spacing: 30px; border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
                                                         <tbody>
                                                         <tr>
-                                                            <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; border-radius: 5px; text-align: center; background-color: #3498db;" valign="top" align="center" bgcolor="#3498db"> <a href="" target="_blank" style="border: solid 1px #3498db; border-radius: 5px; box-sizing: border-box; cursor: pointer; display: inline-block; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-decoration: none; background-color: #3498db; color: #ffffff;">Принять исполнителя</a> </td>
-                                                            <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; border-radius: 5px; text-align: center; background-color: #3498db;" valign="top" align="center" bgcolor="#3498db"> <a href="" target="_blank" style="border: solid 1px #dc3545; border-radius: 5px; box-sizing: border-box; cursor: pointer; display: inline-block; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-decoration: none; background-color: #dc3545; color: #ffffff;">Отказать специалисту</a> </td>
+                                                            <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; border-radius: 5px; text-align: center; background-color: #3498db;" valign="top" align="center" bgcolor="#3498db">
+                                                                <a href="{{env("APP_URL")}}/confirm/{{$order->id}}" target="_blank" style="border: solid 1px #3498db; border-radius: 5px; box-sizing: border-box; cursor: pointer; display: inline-block; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-decoration: none; background-color: #3498db; color: #ffffff;">Принять исполнителя</a> </td>
+                                                            <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; border-radius: 5px; text-align: center; background-color: #3498db;" valign="top" align="center" bgcolor="#3498db">
+                                                                <a href="{{env("APP_URL")}}/reject/{{$order->id}}" target="_blank" style="border: solid 1px #dc3545; border-radius: 5px; box-sizing: border-box; cursor: pointer; display: inline-block; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-decoration: none; background-color: #dc3545; color: #ffffff;">Отказать специалисту</a> </td>
                                                         </tr>
                                                         </tbody>
                                                     </table>

@@ -26,6 +26,9 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+    public function ConfirmAction($id){}
+    public function RejectAction($id){}
+
 
     public function TakeOrderAction($id){
 
@@ -35,9 +38,19 @@ class HomeController extends Controller
             abort(404);
         }
 
-
+        $owner = User::find($order->user_id);
 
         $user = User::find(Auth::user()->id);
+
+        Mail::to($owner->email)->send(new \App\Mail\TakeOrderMail(
+            [
+                "order" => $order,
+                "user" => $user
+            ]
+        ));
+
+
+
 
     }
 
