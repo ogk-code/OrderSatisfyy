@@ -46,7 +46,7 @@ function getExecutorName($executorId){
         <h2>{{$order["name"]}} ({{$status[$order["status"]]}})</h2>
         <h6>Создал пользователь {{$user["name"]}} ({{$email}})</h6>
         @if($order["edited"])
-        <span id="changed">Изменен</span>
+        <span id="changed">Заказ был изменен</span>
         @endif
     </div>
     <div class="row">
