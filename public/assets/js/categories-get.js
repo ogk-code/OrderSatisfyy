@@ -1,9 +1,14 @@
-const params = getParams(location.href);
-let categoryId = getParams(location.href).c;
-let subcategoryId = getParams(location.href).sc;
+let params = getParams(location.href);
+let categoryId = params.c;
+let subcategoryId = params.sc;
+let statusFilter = params.status;
+let sort = params.sort;
 
 categoryId = categoryId === undefined ? "all" : categoryId;
 subcategoryId = subcategoryId === undefined ? "all" : subcategoryId;
+
+$(`#status-filter option[value=${statusFilter}]`).prop('selected', true);
+$(`#sort option[value=${sort}]`).prop('selected', true);
 
 function fillingCategories(obj) {
     let json = JSON.parse(obj);
@@ -34,7 +39,45 @@ $('.categories').on('change', function () {
     let c = $('#category').val();
     let sc = $('#subcategory').val();
     if (c === "all") sc = "all";
-    location.search = `?c=${c}&sc=${sc}`;
+
+    params.c = c;
+    params.sc = sc;
+
+    let search="?";
+    for (let key in params) {
+        search+=`${key}=${params[key]}&`;
+    }
+    search = search.substring(0, search.length - 1);
+
+    location.search = search;
+});
+
+$('#status-filter').on('change', function () {
+    let status = $('#status-filter').val();
+
+    params.status = status;
+
+    let search="?";
+    for (let key in params) {
+        search+=`${key}=${params[key]}&`;
+    }
+    search = search.substring(0, search.length - 1);
+
+    location.search = search;
+});
+
+$('#sort').on('change', function () {
+    let sort = $('#sort').val();
+
+    params.sort = sort;
+
+    let search="?";
+    for (let key in params) {
+        search+=`${key}=${params[key]}&`;
+    }
+    search = search.substring(0, search.length - 1);
+
+    location.search = search;
 });
 
 function getParams(str) {
