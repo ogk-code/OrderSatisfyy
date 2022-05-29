@@ -26,8 +26,8 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    public function ConfirmAction($id){}
-    public function RejectAction($id){}
+    public function ConfirmAction(Request $request){}
+    public function RejectAction(Request $request){}
 
 
     public function TakeOrderAction($id){
