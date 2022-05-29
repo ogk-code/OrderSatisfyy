@@ -48,10 +48,7 @@ class HomeController extends Controller
                 "user" => $user
             ]
         ));
-
-
-
-
+        return redirect()->back();
     }
 
     private function statusChangeEmailSend($toEmail, $order)
