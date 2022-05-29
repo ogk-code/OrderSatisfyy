@@ -16,12 +16,25 @@
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/index.css">
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/header.css">
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/user-profile.css">
+    <style>
+        .hue{
+            margin: 10px;
+        }
+        .work{
+            display: flex;
+            flex-wrap:wrap;
+            justify-content: center;
+        }
+        .work div{
+            margin: 10px;
+        }
+    </style>
 </head>
 <body>
 @include("parts.header")
 <div class="container">
     <div class="title">
-        <h3>Профиль пользователя</h3>
+        <h3 class="hue">Профиль пользователя</h3>
         <a href="{{env("APP_URL")}}/edit-profile">
             <button type="button" class="btn btn-danger title">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -53,8 +66,41 @@
             <tr style="border-bottom: 1px solid rgba(0,0,0,.125);"></tr>
         </table>
     </div>
+<!--    <h3 class="hue">Выполенные работы</h3>
+    <div class="work">
+        <div>
+            <h5><a href="" class="text-primary">Помой посуду</a></h5>
+            <p class="text-sm">Пж помой посуду</p>
+            <a class="text-black" href="">#Домашний мастер#Сантехник</a>
+        </div>
+        <div>
+            <h5><a href="" class="text-primary">Помой посуду</a></h5>
+            <p class="text-sm">Пж помой посуду</p>
+            <a class="text-black" href="">#Домашний мастер#Сантехник</a>
+        </div>
+        <div>
+            <h5><a href="" class="text-primary">Помой посуду</a></h5>
+            <p class="text-sm">Пж помой посуду</p>
+            <a class="text-black" href="">#Домашний мастер#Сантехник</a>
+        </div>
+        <div>
+            <h5><a href="" class="text-primary">Помой посуду</a></h5>
+            <p class="text-sm">Пж помой посуду</p>
+            <a class="text-black" href="">#Домашний мастер#Сантехник</a>
+        </div>
+        <div>
+            <h5><a href="" class="text-primary">Помой посуду</a></h5>
+            <p class="text-sm">Пж помой посуду</p>
+            <a class="text-black" href="">#Домашний мастер#Сантехник</a>
+        </div>
+        <div>
+            <h5><a href="" class="text-primary">Помой посуду</a></h5>
+            <p class="text-sm">Пж помой посуду</p>
+            <a class="text-black" href="">#Домашний мастер#Сантехник</a>
+        </div>
+    </div>-->
 </div>
-<br><br><br><br>
+<br><br>
 @include("parts.footer")
 </body>
 </html>
