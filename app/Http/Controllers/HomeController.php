@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Psy\Util\Json;
 
 
@@ -23,6 +24,18 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+
+    public function EmailTest()
+    {
+        $toEmail = "dnk.garden@gmail.com";
+        Mail::to($toEmail)->send(new \App\Mail\StatusMail(
+            [
+                "data" => "лол, иди нахуй",
+            ]
+        ));
+        return "хахахах, ты лох! ";
     }
 
     function IndexAction()
@@ -245,7 +258,7 @@ class HomeController extends Controller
         $order->adrss           = $request->adrss;
         $order->budget          = $request->price;
         $order->time            = $request->date . " " . $request->time;
-        $order->edited            = true;
+        $order->edited          = true;
 
         $order->save();
         return redirect("/my-orders");
@@ -296,14 +309,15 @@ class HomeController extends Controller
         return view("edit-order", ["c" => $categoriesArray, "order" => $order]);
     }
 
-    public function editOrderStatusAction(Request $request){
+    public function editOrderStatusAction(Request $request)
+    {
 
         $user = User::find(Auth::user()->id);
 
-        $orderId = $request->post("order_id");
+        $orderId     = $request->post("order_id");
         $statusValue = $request->post("status");
 
-        $order = Orders::find($orderId);
+        $order         = Orders::find($orderId);
         $order->status = $statusValue;
 
         if ($order->user_id != $user->id) {
