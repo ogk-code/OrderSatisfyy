@@ -114,7 +114,7 @@ function getExecutorName($executorId){
             @endrole
             @if($order["executor_id"])
                 <h4>Заказ в исполнении специалистом
-                    <a href="{{env("APP_URL")}}/user-profile/{{$order->executor_id}}">{{getExecutorName($order->executor_id)}}</a></h4>
+                    <a href="{{env("APP_URL")}}/user-profile/{{$order["executor_id"]}}">{{getExecutorName($order["executor_id"])}}</a></h4>
             @endif
         </div>
     </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BanList;
 use App\Models\Orders;
 use App\Models\SubСategories;
 use App\Models\Сategories;
@@ -26,15 +27,43 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    public function ConfirmAction(Request $request){}
-    public function RejectAction(Request $request){}
+    public function ConfirmAction(Request $request)
+    {
+        $data = $request->all();
+        $user = User::find($data["user"]);
+        $order = Orders::find($data["order"]);
+
+        Mail::to($user->email)->send(new \App\Mail\OrderTakenMail(
+            [
+                "order" => $order,
+                "user"  => $user,
+            ]
+        ));
+        $order->executor_id  = $user->id;
+        $order->status = 1;
+        $order->save();
+        return "Специалист принят";
+    }
+
+    public function RejectAction(Request $request)
+    {
+        $data = $request->all();
+        $user = User::find($data["user"]);
+        $order = Orders::find($data["order"]);
+        $banList = new BanList();
+        $banList->user_id = $user->id;
+        $banList->order_id = $order->id;
+        $banList->save();
+        return "ну и хуй с ним другого найдем";
+    }
 
 
-    public function TakeOrderAction($id){
+    public function TakeOrderAction($id)
+    {
 
         $order = Orders::find($id);
 
-        if(!$order){
+        if (!$order) {
             abort(404);
         }
 
@@ -45,11 +74,11 @@ class HomeController extends Controller
         Mail::to($owner->email)->send(new \App\Mail\TakeOrderMail(
             [
                 "order" => $order,
-                "user" => $user
+                "user"  => $user,
             ]
         ));
 
-        return redirect()->back()->withCookie(cookie('order_'.$order->id, 'taken', 3600));
+        return redirect()->back()->withCookie(cookie('order_' . $order->id, 'taken', 3600));
     }
 
     private function statusChangeEmailSend($toEmail, $order)
@@ -59,7 +88,7 @@ class HomeController extends Controller
                 "order" => $order,
             ]
         ));
-        if($order->executor_id){
+        if ($order->executor_id) {
             $executor = User::find($order->executor_id);
             Mail::to($executor->email)->send(new \App\Mail\StatusMail(
                 [
