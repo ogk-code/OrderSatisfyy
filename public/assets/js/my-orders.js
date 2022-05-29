@@ -16,7 +16,7 @@ $('.delete').on('click', function () {
     });
 });
 
-$('#status').on('change', function () {
+$('.status').on('change', function () {
     const status = $(this).val();
     const id = $(this).attr('data-id');
     $.ajax({
