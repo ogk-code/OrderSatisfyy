@@ -103,10 +103,11 @@ function getExecutorName($executorId){
                 <a href="{{env("APP_URL")}}/take-order/{{$order["id"]}}">
                     <button style="width: 100%" type="button" class="btn btn-danger">Взять заказ</button>
                 </a>
-            @else
-                {{getExecutorName($order->executor_id)}}
             @endif
             @endrole
+            @if($order["executor_id"])
+                <h4>Заказ в исполнении специалистом <a href="">{{getExecutorName($order->executor_id)}}</a></h4>
+            @endif
         </div>
     </div>
 </div><br>
