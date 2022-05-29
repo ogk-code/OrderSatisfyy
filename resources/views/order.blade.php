@@ -1,6 +1,12 @@
 <?php
 use App\Models\User;
 $email = User::find($order['user_id'])->email;
+$status = [
+    0 => "Ждёт выполнения",
+    1 => "В процессе",
+    2 => "Выполнен",
+    3 => "Просрочен"
+];
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -25,7 +31,7 @@ $email = User::find($order['user_id'])->email;
 <div class="container">
     <div class="text-center">
         <img class="d-block mx-auto mb-4" src="{{env("APP_URL")}}/assets/img/9551554301579156626-128.png" alt="" width="100" height="100">
-        <h2>{{$order["name"]}}</h2>
+        <h2>{{$order["name"]}} ({{$status[$order["status"]]}})</h2>
         <h6>Создал пользователь {{$user["name"]}} ({{$email}})</h6>
     </div>
     <div class="row">
@@ -76,6 +82,8 @@ $email = User::find($order['user_id'])->email;
                     <h4 style='margin: 0;font-family: "Open Sans", sans-serif;'>Бюджет: {{$order["budget"]}} грн.</h4>
                 </div>
             </form>
+            <br>
+            <button style="width: 100%" type="button" class="btn btn-danger">Взять заказ</button>
         </div>
     </div>
 </div><br>
