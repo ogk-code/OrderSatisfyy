@@ -1,5 +1,6 @@
 <?php
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 $email = User::find($order['user_id'])->email;
 $status = [
     0 => "Ждёт выполнения",
@@ -7,6 +8,10 @@ $status = [
     2 => "Выполнен",
     3 => "Просрочен"
 ];
+
+function getExecutorName($executorId){
+    return DB::table("users")->where("id","=",$executorId)->get()->first()->name;
+}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -25,6 +30,9 @@ $status = [
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/swiper-bundle.min.css">
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/index.css">
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/header.css">
+    <style>
+
+    </style>
 </head>
 <body>
 @include("parts.header")
@@ -32,6 +40,7 @@ $status = [
     <div class="text-center">
         <img class="d-block mx-auto mb-4" src="{{env("APP_URL")}}/assets/img/9551554301579156626-128.png" alt="" width="100" height="100">
         <h2>{{$order["name"]}} ({{$status[$order["status"]]}})</h2>
+        <span class="">Изменен</span>
         <h6>Создал пользователь {{$user["name"]}} ({{$email}})</h6>
     </div>
     <div class="row">
@@ -83,7 +92,15 @@ $status = [
                 </div>
             </form>
             <br>
-            <button style="width: 100%" type="button" class="btn btn-danger">Взять заказ</button>
+            @role('staff')
+            @if(!$order["executor_id"])
+                <a href="{{env("APP_URL")}}/take-order/{{$order["id"]}}">
+                    <button style="width: 100%" type="button" class="btn btn-danger">Взять заказ</button>
+                </a>
+            @else
+                {{getExecutorName($order->executor_id)}}
+            @endif
+            @endrole
         </div>
     </div>
 </div><br>
