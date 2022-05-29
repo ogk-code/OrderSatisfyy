@@ -31,7 +31,11 @@ function getExecutorName($executorId){
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/index.css">
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/header.css">
     <style>
-
+        #changed{
+            color: grey;
+            font-style: italic;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -40,8 +44,10 @@ function getExecutorName($executorId){
     <div class="text-center">
         <img class="d-block mx-auto mb-4" src="{{env("APP_URL")}}/assets/img/9551554301579156626-128.png" alt="" width="100" height="100">
         <h2>{{$order["name"]}} ({{$status[$order["status"]]}})</h2>
-        <span class="">Изменен</span>
         <h6>Создал пользователь {{$user["name"]}} ({{$email}})</h6>
+        @if($order["edited"])
+        <span id="changed">Изменен</span>
+        @endif
     </div>
     <div class="row">
         <div class="col align-self-center">
