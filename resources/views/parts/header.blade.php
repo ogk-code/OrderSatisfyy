@@ -10,6 +10,9 @@
         <a href="{{env("APP_URL")}}/my-orders">
             <button type="button" class="btn btn-danger item">Мои заказы</button>
         </a>
+        <a href="{{env("APP_URL")}}/staff">
+            <button type="button" class="btn btn-danger item">Специалисты</button>
+        </a>
         @endrole
 
         @role('staff')
