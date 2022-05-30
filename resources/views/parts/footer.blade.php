@@ -34,8 +34,8 @@
                 <div class="col-lg-4 col-md-6 footer-newsletter">
                     <h4>Наша новостная лента</h4>
                     <p>Подпишитесь на рассылку новых уведомлений нашего сервиса</p>
-                    <form action="" method="post">
-                        <input type="email" name="email" class="rasilka" autocomplete="off"><input type="submit"
+                    <form action="#">
+                        <input type="email" class="rasilka" autocomplete="off"><input type="submit"
                                                                                                    value="Подписаться">
                     </form>
                 </div>
