@@ -221,10 +221,11 @@ class HomeController extends Controller
         $user = User::find($id);
 
         $searchTarget = $user->hasRole("client") ? "user_id" : "executor_id";
+        $role = $user->hasRole("client") ? "client" : "executor";
 
         $works = Orders::where($searchTarget, $user->id)->get()->toArray();
 
-        return view("user-profile", ["profile" => $profile, "id" => $id, "works"=>$works]);
+        return view("user-profile", ["profile" => $profile, "id" => $id, "works"=>$works, "role"=> $role]);
 
     }
 

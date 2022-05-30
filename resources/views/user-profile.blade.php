@@ -1,3 +1,21 @@
+<?php
+use Illuminate\Support\Facades\DB;
+
+function getCatName($subCatId)
+{
+    $id = DB::table("subсategories")
+        ->select("category_id")
+        ->where("id", "=", $subCatId)->get()->first()->category_id;
+    return DB::table("сategories")->select("name")->where("id", "=", $id)->get()->first()->name;
+}
+
+function getSubCatName($subCatId)
+{
+    return DB::table("subсategories")
+        ->select("name")
+        ->where("id", "=", $subCatId)->get()->first()->name;
+}
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -66,39 +84,16 @@
             <tr style="border-bottom: 1px solid rgba(0,0,0,.125);"></tr>
         </table>
     </div>
-<!--    <h3 class="hue">Выполенные работы</h3>
+    <h3 class="hue">{{$role=="client"?"Мои заказы":"Мои работы"}}</h3>
     <div class="work">
+        @foreach($works as $work)
         <div>
-            <h5><a href="" class="text-primary">Помой посуду</a></h5>
-            <p class="text-sm">Пж помой посуду</p>
-            <a class="text-black" href="">#Домашний мастер#Сантехник</a>
+            <h5><a href="{{env("APP_URL")}}/order/{{$work["id"]}}" class="text-primary">{{$work["name"]}}</a></h5>
+            <p class="text-sm">{{$work["description"]}}</p>
+            <p class="text-black">#{{getCatName($work["sub_category_id"])}}#{{getSubCatName($work["sub_category_id"])}}</p>
         </div>
-        <div>
-            <h5><a href="" class="text-primary">Помой посуду</a></h5>
-            <p class="text-sm">Пж помой посуду</p>
-            <a class="text-black" href="">#Домашний мастер#Сантехник</a>
-        </div>
-        <div>
-            <h5><a href="" class="text-primary">Помой посуду</a></h5>
-            <p class="text-sm">Пж помой посуду</p>
-            <a class="text-black" href="">#Домашний мастер#Сантехник</a>
-        </div>
-        <div>
-            <h5><a href="" class="text-primary">Помой посуду</a></h5>
-            <p class="text-sm">Пж помой посуду</p>
-            <a class="text-black" href="">#Домашний мастер#Сантехник</a>
-        </div>
-        <div>
-            <h5><a href="" class="text-primary">Помой посуду</a></h5>
-            <p class="text-sm">Пж помой посуду</p>
-            <a class="text-black" href="">#Домашний мастер#Сантехник</a>
-        </div>
-        <div>
-            <h5><a href="" class="text-primary">Помой посуду</a></h5>
-            <p class="text-sm">Пж помой посуду</p>
-            <a class="text-black" href="">#Домашний мастер#Сантехник</a>
-        </div>
-    </div>-->
+        @endforeach
+    </div>
 </div>
 <br><br>
 @include("parts.footer")
