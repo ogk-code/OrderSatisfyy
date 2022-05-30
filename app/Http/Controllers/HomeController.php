@@ -256,8 +256,8 @@ class HomeController extends Controller
 
         $filters["c"]      = $filters["c"] ?? null;
         $filters["sc"]     = $filters["sc"] ?? null;
-        $filters["status"] = $filters["sc"] ?? null;
-        $filters["sort"]   = $filters["sc"] ?? null;
+        $filters["status"] = $filters["status"] ?? null;
+        $filters["sort"]   = $filters["sort"] ?? null;
 
         if ($filters["sc"] == "all") {
             $filters["sc"] = null;
@@ -265,6 +265,14 @@ class HomeController extends Controller
 
         if ($filters["c"] == "all") {
             $filters["c"] = null;
+        }
+
+        if ($filters["status"] == "all") {
+            $filters["status"] = null;
+        }
+
+        if ($filters["sort"] == "date") {
+            $filters["sort"] = "created_at";
         }
 
         $orders = $this->getOrders($user, $filters["c"], $filters["sc"], $filters["status"], $filters["sort"]);
