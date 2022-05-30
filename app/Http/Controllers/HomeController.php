@@ -27,13 +27,14 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    public function FeetBackEmailAction(Request $request){
+    public function FeetBackEmailAction(Request $request)
+    {
         $emailTo = env("ADMIN_EMAIL");
         Mail::to($emailTo)->send(new \App\Mail\FeetBack(
             [
-                "email" => $request->post("email"),
-                "name" => $request->post("name"),
-                "coment"=> $request->post("coment"),
+                "email"  => $request->post("email"),
+                "name"   => $request->post("name"),
+                "coment" => $request->post("coment"),
             ]
         ));
         return redirect()->back()->with("sex", "Отправленно");
@@ -41,8 +42,8 @@ class HomeController extends Controller
 
     public function ConfirmAction(Request $request)
     {
-        $data = $request->all();
-        $user = User::find($data["user"]);
+        $data  = $request->all();
+        $user  = User::find($data["user"]);
         $order = Orders::find($data["order"]);
 
         Mail::to($user->email)->send(new \App\Mail\OrderTakenMail(
@@ -51,19 +52,19 @@ class HomeController extends Controller
                 "user"  => $user,
             ]
         ));
-        $order->executor_id  = $user->id;
-        $order->status = 1;
+        $order->executor_id = $user->id;
+        $order->status      = 1;
         $order->save();
         return "Специалист принят";
     }
 
     public function RejectAction(Request $request)
     {
-        $data = $request->all();
-        $user = User::find($data["user"]);
-        $order = Orders::find($data["order"]);
-        $banList = new BanList();
-        $banList->user_id = $user->id;
+        $data              = $request->all();
+        $user              = User::find($data["user"]);
+        $order             = Orders::find($data["order"]);
+        $banList           = new BanList();
+        $banList->user_id  = $user->id;
         $banList->order_id = $order->id;
         $banList->save();
         return "ну и хуй с ним другого найдем";
@@ -147,8 +148,10 @@ class HomeController extends Controller
     {
         $filters = $request->all();
 
-        $filters["c"]  = $filters["c"] ?? null;
-        $filters["sc"] = $filters["sc"] ?? null;
+        $filters["c"]      = $filters["c"] ?? null;
+        $filters["sc"]     = $filters["sc"] ?? null;
+        $filters["status"] = $filters["status"] ?? null;
+        $filters["sort"]   = $filters["sort"] ?? null;
 
         if ($filters["sc"] == "all") {
             $filters["sc"] = null;
@@ -158,12 +161,20 @@ class HomeController extends Controller
             $filters["c"] = null;
         }
 
+        if ($filters["status"] == "all") {
+            $filters["status"] = null;
+        }
+
+        if ($filters["sort"] == "date") {
+            $filters["sort"] = "created_at";
+        }
+
 
         $categories    = $this->getTableToArray("сategories", ["id", "name"]);
         $subCategories = $this->getTableToArray("subсategories", ["id", "name", "category_id"]);
 
         $categoriesArray = $this->generateCategoriesArray($categories, $subCategories);
-        $orders          = $this->getOrders(null, $filters["c"], $filters["sc"]);
+        $orders          = $this->getOrders(null, $filters["c"], $filters["sc"], $filters["status"], $filters["sort"]);
         return view("order-list", ["orders" => $orders, "c" => $categoriesArray]);
     }
 
@@ -243,8 +254,10 @@ class HomeController extends Controller
 
         $filters = $request->all();
 
-        $filters["c"]  = $filters["c"] ?? null;
-        $filters["sc"] = $filters["sc"] ?? null;
+        $filters["c"]      = $filters["c"] ?? null;
+        $filters["sc"]     = $filters["sc"] ?? null;
+        $filters["status"] = $filters["status"] ?? null;
+        $filters["sort"]   = $filters["sort"] ?? null;
 
         if ($filters["sc"] == "all") {
             $filters["sc"] = null;
@@ -254,7 +267,15 @@ class HomeController extends Controller
             $filters["c"] = null;
         }
 
-        $orders = $this->getOrders($user, $filters["c"], $filters["sc"]);
+        if ($filters["status"] == "all") {
+            $filters["status"] = null;
+        }
+
+        if ($filters["sort"] == "date") {
+            $filters["sort"] = "created_at";
+        }
+
+        $orders = $this->getOrders($user, $filters["c"], $filters["sc"], $filters["status"], $filters["sort"]);
 
         $categories    = $this->getTableToArray("сategories", ["id", "name"]);
         $subCategories = $this->getTableToArray("subсategories", ["id", "name", "category_id"]);
@@ -265,7 +286,7 @@ class HomeController extends Controller
     }
 
 
-    private function getOrders($user = null, $category = null, $subCategory = null)
+    private function getOrders($user = null, $category = null, $subCategory = null, $status = null, $sort = null)
     {
         $orders = DB::table("orders")->select([
             "orders.id",
@@ -278,6 +299,7 @@ class HomeController extends Controller
             "time",
             "status",
             "edited",
+            "orders.created_at"
         ]);
 
         if ($category) {
@@ -295,6 +317,14 @@ class HomeController extends Controller
             $orders = $orders->where("user_id", '=', $user->id);
             $name   = DB::table("users")->select("name")->where("id", $user->id)->first()->name;
 
+        }
+
+        if ($status !== null) {
+            $orders = $orders->where("status", '=', $status);
+        }
+
+        if ($sort) {
+            $orders = $orders->orderBy("orders.$sort", 'desc');
         }
 
         $orders = $orders->get()->toArray();
