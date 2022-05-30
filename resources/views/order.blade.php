@@ -47,10 +47,11 @@ function getExecutorName($executorId){
     <div class="text-center">
         <img class="d-block mx-auto mb-4" src="{{env("APP_URL")}}/assets/img/9551554301579156626-128.png" alt="" width="100" height="100">
         <h2>{{$order["name"]}} ({{$status[$order["status"]]}})</h2>
-        <h6>Создал пользователь {{$user["name"]}} ({{$email}})</h6>
-        @if($order["edited"])
-        <span id="changed">Заказ был изменен</span>
-        @endif
+        <h6>Создал пользователь <a href="{{env("APP_URL")}}/user-profile/{{$user["id"]}}">{{$user["name"]}}</a>
+            @if($order["edited"])
+            <span id="changed">(Заказ был изменен)</span>
+            @endif
+        </h6>
     </div>
     <div class="row">
         <div class="col align-self-center">
