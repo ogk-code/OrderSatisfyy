@@ -52,8 +52,8 @@ Route::get('/user-profile', function () {
 Route::get('/edit-profile', function () {
     return view('edit-profile');
 });
-Route::get('/status-change', function () {
-    return view('/email/status-change');
+Route::get('/staff', function () {
+    return view('/staff-list');
 });
 
 Route::resource('/order', \App\Http\Controllers\OrdersController::class);
