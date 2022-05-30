@@ -42,7 +42,7 @@
                 <button type="button" class="btn btn-danger item">Регистрация</button>
             </a>
         @else
-            <a href="{{env("APP_URL")}}/user-profile">
+            <a href="{{env("APP_URL")}}/user-profile/{{Auth::user()->id}}">
                 <button type="button" class="btn btn-light">{{Auth::user()->name}}</button>
             </a>
             <a href="{{env("APP_URL")}}/logout">

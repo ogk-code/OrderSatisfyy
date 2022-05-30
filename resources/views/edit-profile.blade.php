@@ -23,36 +23,38 @@
     <div class="title">
         <h3>Редактирование профиля</h3>
     </div>
-    <form action="">
+    <form action="{{env("APP_URL")}}/save-userinfo" method="POST">
+        @csrf
         <div style="border: 1px solid red; border-radius: 0.25rem;" class="container">
             <table class="table">
                 <div style="margin: 15px"></div>
+                <input type="hidden" name="id" value="{{$id}}">
                 <tr>
                     <th scope="row"><div class="hue3">Имя:</div></th>
                     <td class="text-left hue2">
-                        <input value="" name="name" type="text" class="form-control input-profile"
+                        <input value="{{$profile->name}}" name="name" type="text" class="form-control input-profile"
                                placeholder="Имя" required autocomplete="off">
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><div class="hue3">Описание:</div></th>
                     <td class="text-left hue2">
-                        <input value="" name="description" type="text" class="form-control input-profile"
-                               placeholder="Описание" required autocomplete="off">
+                        <input value="{{$profile->description}}" name="description" type="text" class="form-control input-profile"
+                               placeholder="Описание"  autocomplete="off">
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><div class="hue3">Email:</div></th>
                     <td class="text-left hue2">
-                        <input value="" name="email" type="text" class="form-control input-profile"
+                        <input value="{{$profile->email}}" name="email" type="email" class="form-control input-profile"
                                placeholder="Email" required autocomplete="off">
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><div class="hue3">Телефон:</div></th>
                     <td class="text-left hue2">
-                        <input value="" name="telephone" type="text" class="form-control input-profile"
-                               placeholder="Телефон" required autocomplete="off">
+                        <input value="{{$profile->telephone}}" name="telephone" type="tel" class="form-control input-profile"
+                               placeholder="Телефон"  autocomplete="off">
                     </td>
                 </tr>
                 <tr style="border-bottom: 1px solid rgba(0,0,0,.125);"></tr>

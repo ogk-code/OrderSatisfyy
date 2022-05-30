@@ -7,10 +7,12 @@ use App\Models\Orders;
 use App\Models\SubСategories;
 use App\Models\Сategories;
 use App\Models\User;
+use App\Models\UserInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use phpDocumentor\Reflection\Types\Object_;
 use Psy\Util\Json;
 
 
@@ -55,19 +57,21 @@ class HomeController extends Controller
         $order->executor_id = $user->id;
         $order->status      = 1;
         $order->save();
-        return "Специалист принят";
+        return view("order-taken-result.confirm");
     }
 
     public function RejectAction(Request $request)
     {
-        $data              = $request->all();
-        $user              = User::find($data["user"]);
-        $order             = Orders::find($data["order"]);
-        $banList           = new BanList();
-        $banList->user_id  = $user->id;
-        $banList->order_id = $order->id;
+        $data               = $request->all();
+        $user               = User::find($data["user"]);
+        $order              = Orders::find($data["order"]);
+        $order->executor_id = null;
+        $banList            = new BanList();
+        $banList->user_id   = $user->id;
+        $banList->order_id  = $order->id;
         $banList->save();
-        return "ну и хуй с ним другого найдем";
+        return view("order-taken-result.reject");
+
     }
 
 
@@ -195,15 +199,33 @@ class HomeController extends Controller
     function UserProfileAction(Request $request, $id)
     {
 //        !$user->hasRole("client")
-        $profile = User::find($id);
-        if ($profile->hasRole("client")) {
-            abort(404);
-        }
-        $profile = $profile->toArray();
-        return view("user-profile", ["profile" => $profile]);
+//        $profile = User::find($id);
+//        if ($profile->hasRole("client")) {
+//            abort(404);
+//        }
 
+        $profile = DB::table("users")->select("name", "email", "description", "telephone")
+            ->join("user_info", "users.id", "=", "user_id")->where("users.id", "=", $id)
+            ->get()->first();
 
-        return view("user-profile");
+        $profile = $profile ?? User::find($id);
+
+        if ($profile instanceof User)
+            $profile = (object)[
+                "name"        => $profile->name,
+                "email"       => $profile->email,
+                "description" => "",
+                "telephone"   => "",
+            ];
+
+        $user = User::find($id);
+
+        $searchTarget = $user->hasRole("client") ? "user_id" : "executor_id";
+
+        $works = Orders::where($searchTarget, $user->id)->get()->toArray();
+
+        return view("user-profile", ["profile" => $profile, "id" => $id, "works"=>$works]);
+
     }
 
     function OrderAction()
@@ -299,7 +321,7 @@ class HomeController extends Controller
             "time",
             "status",
             "edited",
-            "orders.created_at"
+            "orders.created_at",
         ]);
 
         if ($category) {
@@ -433,5 +455,76 @@ class HomeController extends Controller
         return response("Збс, обновил", 200);
     }
 
+    public function saveUserInfo(Request $request)
+    {
+
+        $userId = $request->post("id");
+
+        $user = User::find($userId);
+
+        $user->name  = $request->post("name");
+        $user->email = $request->post("email");
+
+        $userInfo = UserInfo::where('user_id', $userId)->first();
+        if (!$userInfo) {
+            $userInfo = new UserInfo();
+        }
+
+        $userInfo->user_id     = $userId;
+        $userInfo->description = $request->post("description");
+        $userInfo->telephone   = $request->post("telephone");
+
+        $userInfo->save();
+
+        return redirect(env("APP_URL") . "/user-profile/$userId");
+    }
+
+    public function editProfileAction($id)
+    {
+        $profile = DB::table("users")->select("name", "email", "description", "telephone")
+            ->join("user_info", "users.id", "=", "user_id")->where("users.id", "=", $id)
+            ->get()->first();
+
+        $profile = $profile ?? User::find($id);
+
+        if ($profile instanceof User)
+            $profile = (object)[
+                "name"        => $profile->name,
+                "email"       => $profile->email,
+                "description" => "",
+                "telephone"   => "",
+            ];
+
+        return view("edit-profile", ["profile" => $profile, "id" => $id]);
+    }
+
+    public function staffGlistAction()
+    {
+        $staffs_ids = DB::table("users_roles")->select("user_id")
+            ->where('role_id', "=", "2")->get()->toArray();
+
+        $staffs_ids = array_map(function ($element) {
+            return $element->user_id;
+        }, $staffs_ids);
+
+        $users   = DB::table("users")->whereIn("id", $staffs_ids)->get()->toArray();
+        $profile = [];
+
+        foreach ($users as $key => $user) {
+            $userInfo                     = UserInfo::find($user->id);
+            $profile[$key]['name']        = $user->name;
+            $profile[$key]['id']          = $user->id;
+            $profile[$key]['description'] = $userInfo ? $userInfo->description : "";
+
+            $works = Orders::where("executor_id", $user->id)->get()->toArray();
+
+            $works = count($works) > 3 ? array_slice($works, 0, -3) : $works;
+
+            $profile[$key]['works'] = $works;
+        }
+
+        return view("staff-list", ["profile" => $profile]);
+
+    }
 
 }

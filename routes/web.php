@@ -31,6 +31,11 @@ Route::post('/feetback-email', [\App\Http\Controllers\HomeController::class, 'Fe
 Route::post('/edit-order-status', [\App\Http\Controllers\HomeController::class, 'editOrderStatusAction']);
 Route::get('/edit-order/{id}', [\App\Http\Controllers\HomeController::class, 'editOrderAction']);
 Route::get('/take-order/{id}', [\App\Http\Controllers\HomeController::class, 'TakeOrderAction']);
+Route::get('/edit-profile/{id}', [\App\Http\Controllers\HomeController::class, 'editProfileAction']);
+
+Route::get('/staff', [\App\Http\Controllers\HomeController::class, 'staffGlistAction']);
+
+Route::post('/save-userinfo', [\App\Http\Controllers\HomeController::class, 'saveUserInfo']);
 
 Route::get('/confirm', [\App\Http\Controllers\HomeController::class, 'ConfirmAction']);
 Route::get('/reject', [\App\Http\Controllers\HomeController::class, 'RejectAction']);
@@ -46,15 +51,7 @@ Route::get('/contacts', function () {
 Route::get('/about-us', function () {
     return view('about-us');
 });
-Route::get('/user-profile', function () {
-    return view('user-profile');
-});
-Route::get('/edit-profile', function () {
-    return view('edit-profile');
-});
-Route::get('/staff', function () {
-    return view('/staff-list');
-});
+
 
 Route::resource('/order', \App\Http\Controllers\OrdersController::class);
 Route::get('/search/{search_data}', [\App\Http\Controllers\ApiController::class, 'search']);
