@@ -84,6 +84,7 @@ function getSubCatName($subCatId)
             <tr style="border-bottom: 1px solid rgba(0,0,0,.125);"></tr>
         </table>
     </div>
+    @if(count($works)!==0)
     <h3 class="hue">{{$role=="client"?"Мои заказы":"Мои работы"}}</h3>
     <div class="work">
         @foreach($works as $work)
@@ -94,6 +95,7 @@ function getSubCatName($subCatId)
         </div>
         @endforeach
     </div>
+    @endif
 </div>
 <br><br>
 @include("parts.footer")
