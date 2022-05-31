@@ -1,6 +1,13 @@
 <?php
 use Illuminate\Support\Facades\DB;
 
+function getCatId($subCatId)
+{
+    return DB::table("subсategories")
+        ->select("category_id")
+        ->where("id", "=", $subCatId)->get()->first()->category_id;
+}
+
 function getCatName($subCatId)
 {
     $id = DB::table("subсategories")
@@ -91,7 +98,7 @@ function getSubCatName($subCatId)
         <div>
             <h5><a href="{{env("APP_URL")}}/order/{{$work["id"]}}" class="text-primary">{{$work["name"]}}</a></h5>
             <p class="text-sm">{{$work["description"]}}</p>
-            <p class="text-black">#{{getCatName($work["sub_category_id"])}}#{{getSubCatName($work["sub_category_id"])}}</p>
+            <a href="{{env("APP_URL")}}/order-list?c={{getCatId($work["sub_category_id"])}}&sc={{$work["sub_category_id"]}}" class="text-black">#{{getCatName($work["sub_category_id"])}}#{{getSubCatName($work["sub_category_id"])}}</a>
         </div>
         @endforeach
     </div>
