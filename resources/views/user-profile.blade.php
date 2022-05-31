@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 function getCatId($subCatId)
 {
@@ -60,6 +61,7 @@ function getSubCatName($subCatId)
 <div class="container">
     <div class="title">
         <h3 class="hue">Профиль пользователя</h3>
+        @if($id==Auth::user()->id)
         <a href="{{env("APP_URL")}}/edit-profile/{{$id}}">
             <button type="button" class="btn btn-danger title">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -68,6 +70,7 @@ function getSubCatName($subCatId)
                 </svg>
             </button>
         </a>
+        @endif
     </div>
     <div style="border: 1px solid red; border-radius: 0.25rem;" class="container">
         <table class="table">
