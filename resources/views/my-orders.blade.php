@@ -95,8 +95,7 @@ function getSubCatName($subCatId)
                     <p class="text-sm">{{$order->description}}<span class="op-6"></span></p>
                     <div class="text-sm op-5">
                         <a class="text-black mr-2"
-                           href="/my-orders?c={{getCatId($order->sub_category_id)}}&sc={{$order->sub_category_id}}">#{{getCatName($order->sub_category_id)}}
-                            #{{getSubCatName($order->sub_category_id)}}</a>
+                           href="/my-orders?c={{getCatId($order->sub_category_id)}}&sc={{$order->sub_category_id}}">#{{getCatName($order->sub_category_id)}}#{{getSubCatName($order->sub_category_id)}}</a>
                     </div>
                 </div>
 
