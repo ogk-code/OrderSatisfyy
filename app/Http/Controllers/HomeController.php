@@ -70,6 +70,12 @@ class HomeController extends Controller
         $banList->user_id   = $user->id;
         $banList->order_id  = $order->id;
         $banList->save();
+        Mail::to($user->email)->send(new \App\Mail\OrderNotTakenMail(
+            [
+                "order" => $order,
+                "user"  => $user,
+            ]
+        ));
         return view("order-taken-result.reject");
 
     }

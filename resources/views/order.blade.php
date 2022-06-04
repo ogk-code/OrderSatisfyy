@@ -120,7 +120,7 @@ function getExecutorName($executorId){
         </div>
     </div>
 </div>
-<section style="padding-top: 0" id="testimonials" class="testimonials">
+<section style="padding-top: 20px" id="testimonials" class="testimonials">
     <div class="container">
         <div class="row">
             <div class="col-12">
