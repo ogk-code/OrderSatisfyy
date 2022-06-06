@@ -14,12 +14,11 @@
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/remixicon.css">
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/swiper-bundle.min.css">
     <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/index.css">
+    <link rel="stylesheet" href="{{env("APP_URL")}}/assets/style/header.css">
 </head>
 <body>
 @include("parts.header")
-<br><br><br>
 <div class="container">
-    <hr>
     <div class="py-3 text-center">
         <img class="d-block mx-auto mb-4" src="{{env("APP_URL")}}/assets/img/Screenshot_6.png" alt="" width="1140" height="663">
     </div>

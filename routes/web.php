@@ -17,11 +17,31 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'IndexAction']);
+Route::get('/email', [\App\Http\Controllers\HomeController::class, 'EmailTest']);
 Route::get('/login2', [\App\Http\Controllers\HomeController::class, 'LoginAction']);
 Route::get('/logout', [\App\Http\Controllers\HomeController::class, 'logout']);
-Route::get('/register', [\App\Http\Controllers\HomeController::class, 'RegisterAction']);
+//Route::get('/register', [\App\Http\Controllers\HomeController::class, 'RegisterAction']);
 Route::get('/create-order', [\App\Http\Controllers\HomeController::class, 'CreateOrderAction']);
 Route::get('/order-list', [\App\Http\Controllers\HomeController::class, 'OrderListAction']);
+Route::get('/user-profile/{id}', [\App\Http\Controllers\HomeController::class, 'UserProfileAction']);
+Route::get('/my-orders', [\App\Http\Controllers\HomeController::class, 'MyOrdersAction']);
+Route::post('/delete-order', [\App\Http\Controllers\HomeController::class, 'deleteOrder']);
+Route::post('/update-order', [\App\Http\Controllers\HomeController::class, 'updateOrderAction']);
+Route::post('/add-coment', [\App\Http\Controllers\HomeController::class, 'addComentAction']);
+Route::post('/feetback-email', [\App\Http\Controllers\HomeController::class, 'FeetBackEmailAction']);
+Route::post('/edit-order-status', [\App\Http\Controllers\HomeController::class, 'editOrderStatusAction']);
+Route::get('/edit-order/{id}', [\App\Http\Controllers\HomeController::class, 'editOrderAction']);
+Route::get('/take-order/{id}', [\App\Http\Controllers\HomeController::class, 'TakeOrderAction']);
+Route::get('/edit-profile/{id}', [\App\Http\Controllers\HomeController::class, 'editProfileAction']);
+
+Route::get('/staff', [\App\Http\Controllers\HomeController::class, 'staffGlistAction']);
+
+Route::post('/save-userinfo', [\App\Http\Controllers\HomeController::class, 'saveUserInfo']);
+
+Route::get('/confirm', [\App\Http\Controllers\HomeController::class, 'ConfirmAction']);
+Route::get('/reject', [\App\Http\Controllers\HomeController::class, 'RejectAction']);
+
+
 
 Route::get('/FAQ', function () {
     return view('FAQ');
@@ -33,5 +53,7 @@ Route::get('/about-us', function () {
     return view('about-us');
 });
 
-Route::resource('order', \App\Http\Controllers\OrdersController::class);
+
+Route::resource('/order', \App\Http\Controllers\OrdersController::class);
+Route::get('/search/{search_data}', [\App\Http\Controllers\ApiController::class, 'search']);
 

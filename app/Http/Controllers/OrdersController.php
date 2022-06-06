@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Coment;
 use App\Models\Orders;
 use App\Models\SubСategories;
 use App\Models\User;
@@ -51,14 +52,14 @@ class OrdersController extends Controller
 
 
         $order->name            = $request->title;
-        $order->sub_category_id = 1;
+        $order->sub_category_id = $request->subcategory;
         $order->description     = $request->description;
         $order->adrss           = $request->adrss;
         $order->budget          = $request->price;
         $order->time            = $request->date . " " . $request->time . ":00";
         $order->user_id         = $user->id;
         $order->save();
-        return redirect("/order-list");
+        return redirect("/my-orders");
 
     }
 
@@ -75,19 +76,25 @@ class OrdersController extends Controller
         if (!$order) {
             abort(404);
         }
-        $order = $order->toArray();
-        $user = User::find($order["user_id"])->toArray();
-        $user = [
-            "name"=>$user["name"],
-            "id" => $user["id"],
+        $order       = $order->toArray();
+        $user        = User::find($order["user_id"])->toArray();
+        $user        = [
+            "name" => $user["name"],
+            "id"   => $user["id"],
         ];
         $subCategory = SubСategories::find($order["sub_category_id"])->toArray();
-        $cats = [
+        $cats        = [
             "sub_category" => $subCategory,
-            "category" => Сategories::find($subCategory["category_id"])->toArray(),
+            "category"     => Сategories::find($subCategory["category_id"])->toArray(),
         ];
 
-        return view("order", ["order" => $order, "user"=>$user, "cats"=>$cats]);
+        $coments = Coment::where("order_id", $id)->get()->toArray();
+
+        foreach ($coments as $key => $value){
+            $coments[$key]["name"] = User::find($value["user_id"])->name;
+        }
+
+        return view("order", ["order" => $order, "user" => $user, "cats" => $cats, "coment"=>$coments]);
     }
 
     /**

@@ -21,7 +21,10 @@ return new class extends Migration
             $table->string("adrss");
             $table->float("budget");
             $table->foreignId("user_id")->constrained("users")->onDelete('cascade');
+            $table->foreignId("executor_id")->nullable()->constrained("users")->onDelete('cascade');
             $table->dateTime("time");
+            $table->integer("status")->default(0);
+            $table->boolean("edited")->default(false);
             $table->timestamps();
         });
     }
