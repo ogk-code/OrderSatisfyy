@@ -124,12 +124,13 @@ function getExecutorName($executorId){
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <form>
+                <form action="{{env("APP_URL")}}/add-coment" method="POST">
                     @csrf
+                    <input type="hidden" value="{{$order["id"]}}" name="order_id">
                     <div class="typeahead__container">
                         <div class="typeahead__field">
                             <div class="typeahead__query">
-                                <input name="" placeholder="Комментарий по заказу">
+                                <input name="text" placeholder="Комментарий по заказу">
                             </div>
                             <div class="typeahead__button">
                                 <button type="submit">

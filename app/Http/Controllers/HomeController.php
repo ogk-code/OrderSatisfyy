@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BanList;
+use App\Models\Coment;
 use App\Models\Orders;
 use App\Models\SubСategories;
 use App\Models\Сategories;
@@ -227,11 +228,11 @@ class HomeController extends Controller
         $user = User::find($id);
 
         $searchTarget = $user->hasRole("client") ? "user_id" : "executor_id";
-        $role = $user->hasRole("client") ? "client" : "executor";
+        $role         = $user->hasRole("client") ? "client" : "executor";
 
         $works = Orders::where($searchTarget, $user->id)->get()->toArray();
 
-        return view("user-profile", ["profile" => $profile, "id" => $id, "works"=>$works, "role"=> $role]);
+        return view("user-profile", ["profile" => $profile, "id" => $id, "works" => $works, "role" => $role]);
 
     }
 
@@ -532,6 +533,16 @@ class HomeController extends Controller
 
         return view("staff-list", ["profile" => $profile]);
 
+    }
+
+    public function addComentAction(Request $request)
+    {
+        $coment = new Coment();
+        $coment->coment = $request->post("text");
+        $coment->order_id = $request->post("order_id");
+        $coment->user_id = Auth::user()->id;
+        $coment->save();
+        return redirect()->back();
     }
 
 }

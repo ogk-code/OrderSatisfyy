@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Coment;
 use App\Models\Orders;
 use App\Models\SubСategories;
 use App\Models\User;
@@ -87,7 +88,13 @@ class OrdersController extends Controller
             "category"     => Сategories::find($subCategory["category_id"])->toArray(),
         ];
 
-        return view("order", ["order" => $order, "user" => $user, "cats" => $cats]);
+        $coments = Coment::where("order_id", $id)->get()->toArray();
+
+        foreach ($coments as $key => $value){
+            $coments[$key]["name"] = User::find($value["user_id"])->name;
+        }
+
+        return view("order", ["order" => $order, "user" => $user, "cats" => $cats, "coment"=>$coments]);
     }
 
     /**

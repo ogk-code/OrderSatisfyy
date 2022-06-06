@@ -27,6 +27,7 @@ Route::get('/user-profile/{id}', [\App\Http\Controllers\HomeController::class, '
 Route::get('/my-orders', [\App\Http\Controllers\HomeController::class, 'MyOrdersAction']);
 Route::post('/delete-order', [\App\Http\Controllers\HomeController::class, 'deleteOrder']);
 Route::post('/update-order', [\App\Http\Controllers\HomeController::class, 'updateOrderAction']);
+Route::post('/add-coment', [\App\Http\Controllers\HomeController::class, 'addComentAction']);
 Route::post('/feetback-email', [\App\Http\Controllers\HomeController::class, 'FeetBackEmailAction']);
 Route::post('/edit-order-status', [\App\Http\Controllers\HomeController::class, 'editOrderStatusAction']);
 Route::get('/edit-order/{id}', [\App\Http\Controllers\HomeController::class, 'editOrderAction']);
