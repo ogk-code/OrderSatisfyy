@@ -144,7 +144,7 @@ function getExecutorName($executorId){
             @foreach($comments as $comment)
             <div class="col-lg-6">
                 <div class="testimonial-item mt-4">
-                    <h3>{{$comment["name"]}}</h3>
+                    <h3 style="margin: 0">{{$comment["name"]}}</h3>
                     <p>
                         <i class="bx bxs-quote-alt-left quote-icon-left"></i>
                         {{$comment["coment"]}}
