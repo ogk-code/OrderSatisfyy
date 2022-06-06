@@ -94,7 +94,7 @@ class OrdersController extends Controller
             $coments[$key]["name"] = User::find($value["user_id"])->name;
         }
 
-        return view("order", ["order" => $order, "user" => $user, "cats" => $cats, "coment"=>$coments]);
+        return view("order", ["order" => $order, "user" => $user, "cats" => $cats, "comments"=>$coments]);
     }
 
     /**

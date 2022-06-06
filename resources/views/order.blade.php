@@ -141,26 +141,18 @@ function getExecutorName($executorId){
                     </div>
                 </form>
             </div>
+            @foreach($comments as $comment)
             <div class="col-lg-6">
                 <div class="testimonial-item mt-4">
-                    <h3>имя</h3>
+                    <h3>{{$comment["name"]}}</h3>
                     <p>
                         <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                        Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+                        {{$comment["coment"]}}
                         <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                     </p>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="testimonial-item mt-4">
-                    <h3>имя</h3>
-                    <p>
-                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                        Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
