@@ -125,15 +125,6 @@ class CategorySeeds extends Seeder
         $this->createSubCategory($categoryId, "Продвижение сайтов");
         $this->createSubCategory($categoryId, "Верстка сайта");
 
-        // Создание категорий (13)
-        $categoryId = $this->createCategory("Разработка сайтов и приложений");
-        // Создание подкатегорий
-        $this->createSubCategory($categoryId, "Создание сайтов");
-        $this->createSubCategory($categoryId, "Доработка сайта");
-        $this->createSubCategory($categoryId, "Создание целевой страницы");
-        $this->createSubCategory($categoryId, "Продвижение сайтов");
-        $this->createSubCategory($categoryId, "Верстка сайта");
-
         // Создание категорий (14)
         $categoryId = $this->createCategory("Бюро переводов");
         // Создание подкатегорий
@@ -223,15 +214,6 @@ class CategorySeeds extends Seeder
         $this->createSubCategory($categoryId, "Водные виды спорта");
         $this->createSubCategory($categoryId, "Силовые виды спорта");
         $this->createSubCategory($categoryId, "Боевые искусства");
-
-        // Создание категорий (23)
-        $categoryId = $this->createCategory("Другие категории");
-        // Создание подкатегорий
-        $this->createSubCategory($categoryId, "Дом");
-        $this->createSubCategory($categoryId, "Доставка");
-        $this->createSubCategory($categoryId, "Фриланс");
-        $this->createSubCategory($categoryId, "Преподавание");
-        $this->createSubCategory($categoryId, "Бизнес");
     }
 
     private function createCategory($categoryName)
