@@ -19,21 +19,21 @@
             <span class="invalid-feedback"></span>
         </div>
       <div class="form-group">
-        <input type="text" name="email" placeholder="Введите email" class="form-control " value="" autocomplete="off">
+        <input type="email" name="email" placeholder="Введите email" class="form-control " value="" autocomplete="off">
         <span class="invalid-feedback"></span>
           @error('email')
           <span class="invalid-feedback" role="alert"><strong>Неправильный email</strong></span>
           @enderror
       </div>
       <div class="form-group">
-        <input type="password" name="password" placeholder="Введите пароль" class="form-control " value="" autocomplete="off">
+        <input minlength="6" type="password" name="password" placeholder="Введите пароль" class="form-control " value="" autocomplete="off">
         <span class="invalid-feedback"></span>
       </div>
         @error('password')
         <span class="invalid-feedback" role="alert"><strong>>Неправильный пароль</strong></span>
         @enderror
       <div class="form-group">
-        <input type="password" name="confirm_password" placeholder="Подтвердите введенный пароль" class="form-control " value="" autocomplete="off">
+        <input minlength="6" type="password" name="confirm_password" placeholder="Подтвердите введенный пароль" class="form-control " value="" autocomplete="off">
         <span class="invalid-feedback"></span>
       </div>
         <div style="text-align: left;" class="form-check">
