@@ -76,7 +76,7 @@ function getSubCatName($subCatId)
         <table class="table">
             <div style="margin: 15px"></div>
             <tr>
-                <th scope="row">Имя:</th>
+                <th scope="row">ФИО:</th>
                 <td class="text-left">{{$profile->name}}</td>
             </tr>
             <tr>

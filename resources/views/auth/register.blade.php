@@ -15,7 +15,7 @@
       <h1 class="h3 mb-3 font-weight-normal">Регистрация</h1>
 
         <div class="form-group">
-            <input type="text" name="name" placeholder="Введите имя" class="form-control " value="" autocomplete="off">
+            <input type="text" name="name" placeholder="Введите ФИО" class="form-control " value="" autocomplete="off">
             <span class="invalid-feedback"></span>
         </div>
       <div class="form-group">

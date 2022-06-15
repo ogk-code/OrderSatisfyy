@@ -30,10 +30,10 @@
                 <div style="margin: 15px"></div>
                 <input type="hidden" name="id" value="{{$id}}">
                 <tr>
-                    <th scope="row"><div class="hue3">Имя:</div></th>
+                    <th scope="row"><div class="hue3">ФИО:</div></th>
                     <td class="text-left hue2">
                         <input value="{{$profile->name}}" name="name" type="text" class="form-control input-profile"
-                               placeholder="Имя" required autocomplete="off">
+                               placeholder="ФИО" required autocomplete="off">
                     </td>
                 </tr>
                 <tr>
