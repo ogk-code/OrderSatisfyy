@@ -43,7 +43,8 @@
             </a>
         @else
             <a href="{{env("APP_URL")}}/user-profile/{{Auth::user()->id}}">
-                <button type="button" class="btn btn-light">{{Auth::user()->name}}</button>
+<!--                <button type="button" class="btn btn-light">{{Auth::user()->name}}</button>-->
+                <button type="button" class="btn btn-light">Мой профиль</button>
             </a>
             <a href="{{env("APP_URL")}}/logout">
                 <button type="button" class="btn btn-secondary item">Выйти</button>
