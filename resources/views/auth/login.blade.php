@@ -15,11 +15,11 @@
       <h1 class="h3 mb-3 font-weight-normal">Авторизация</h1>
       <br>
       <div class="form-group">
-        <input type="text"  placeholder="Введите email" class="form-control"  name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+        <input type="email"  placeholder="Введите email" class="form-control"  name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
         <span class="invalid-feedback"></span>
       </div>
       <div class="form-group">
-        <input type="password" name="password" placeholder="Введите пароль" class="form-control " required autocomplete="current-password">
+        <input minlength="6" type="password" name="password" placeholder="Введите пароль" class="form-control " required autocomplete="current-password">
         <span class="invalid-feedback"></span>
       </div>
 
