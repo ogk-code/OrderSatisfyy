@@ -9,6 +9,7 @@ use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -77,6 +78,12 @@ class RegisterController extends Controller
         $user->password = bcrypt($data["password"]);
         $user->save();
         $user->roles()->attach($usersRole);
+
+        Mail::to($user->email)->send(new \App\Mail\Welcome(
+            [
+                "name"  => $user->name,
+            ]
+        ));
 
         return $user;
 
