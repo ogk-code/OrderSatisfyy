@@ -109,7 +109,7 @@ function getExecutorName($executorId){
                     <button style="width: 100%" type="button" class="btn btn-danger">Взять заказ</button>
                 </a>
                 @else
-                    <h4> Ваша кандидатура на расмотренни заказчиком </h4>
+                    <h4> Ваша кандидатура на рассмотрении заказчиком </h4>
                 @endif
             @endif
             @endrole
