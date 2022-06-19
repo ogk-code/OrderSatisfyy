@@ -102,7 +102,7 @@
                 <div class="row">
                     <div class="input-group col-md-8 mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">Примерный бюджет</span>
+                            <span class="input-group-text">Цена</span>
                         </div>
                         <input name="price" type="number" class="form-control" autocomplete="off"
                                aria-label="Amount (to the nearest dollar)" required>
