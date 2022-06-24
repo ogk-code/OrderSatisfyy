@@ -365,7 +365,7 @@ class HomeController extends Controller
             $order->user = $user ? $name : DB::table("users")->select("name")->where("id", $order->user_id)->first()->name;
         }
 
-        if($sort=="status"){
+        if($sort==="status"){
             $orders = array_reverse($orders);
         }
 
